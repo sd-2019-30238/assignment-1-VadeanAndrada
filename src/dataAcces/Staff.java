@@ -3,7 +3,21 @@ package dataAcces;
 public class Staff {
 	private int idStff;
 	private String nameStaff;
-	private String rol;
+	private String role;
+	private String password;
+	
+	public Staff(String nameStaff, String role, String pasword) {
+		this.role=role;
+		this.nameStaff=nameStaff;
+		this.password=password;
+	}
+	public Staff() {}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public int getIdStff() {
 		return idStff;
 	}
@@ -16,10 +30,11 @@ public class Staff {
 	public void setNameStaff(String nameStaff) {
 		this.nameStaff = nameStaff;
 	}
-	public String getRol() {
-		return rol;
+
+	public String getRole() {
+		return role;
 	}
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

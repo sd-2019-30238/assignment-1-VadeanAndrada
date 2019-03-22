@@ -19,7 +19,7 @@ public class ManageFurniture {
 			while(result.next()) {
 			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
-				for(int i=0; i<4;i++) {		
+				for(int i=0; i<5;i++) {		
 					oneRow[i]=result.getString(i+1);
 					System.out.println(oneRow[i]);
 				}
@@ -41,7 +41,7 @@ public class ManageFurniture {
 			while(result.next()) {
 			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
-				for(int i=0; i<4;i++) {		
+				for(int i=0; i<5;i++) {		
 					oneRow[i]=result.getString(i+1);
 					System.out.println(oneRow[i]);
 				}
@@ -63,7 +63,7 @@ public class ManageFurniture {
 			while(result.next()) {
 			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
-				for(int i=0; i<4;i++) {		
+				for(int i=0; i<5;i++) {		
 					oneRow[i]=result.getString(i+1);
 					System.out.println(oneRow[i]);
 				}
@@ -85,7 +85,7 @@ public class ManageFurniture {
 			while(result.next()) {
 			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
-				for(int i=0; i<4;i++) {		
+				for(int i=0; i<5;i++) {		
 					oneRow[i]=result.getString(i+1);
 					System.out.println(oneRow[i]);
 				}
@@ -101,40 +101,41 @@ public class ManageFurniture {
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement =null;
 		try {
-			String query="Insert into furniture (nameFurniture, type, discount, price) values (?,?,?,?)";
+			String query="Insert into furniture (nameFurniture, type, discount, price, number) values (?,?,?,?,?)";
 			statement=con.prepareStatement(query);
 			statement.setString(1, f.getNameFurniture());
 			statement.setString(2, f.getType());
 			statement.setString(3, f.getDiscount());
 			statement.setString(4, f.getPrice());
+			statement.setString(5, f.getNumber()+"");
 			statement.executeUpdate();
 		}catch (Exception e) {
 			System.out.println("cannot add into database!=> "+e);
 		}		
 	}
 	
-	public int searchFruniture(String nameUser){
+	public int searchFruniture(String nameFurniture){
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameUser) AS total from user where nameUser='"+nameUser+"'";
+			String query="Select count(nameFurniture) AS total from user where nameFurniture='"+nameFurniture+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();
 			int noUser=result.getInt("total");
 			return noUser;
 		}catch (Exception e) {
-			System.out.println("can't find the user "+e);
+			System.out.println("can't find the furniture "+e);
 		}
 		return 0;
 	}
 	
-	public void deleteUser(User u)throws SQLException{
+	public void deleteFurniture(Furniture f)throws SQLException{
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement=null;
 		try {
-			String query="Delete from user where nameUser="+"'"+u.getNameUser()+"'";
+			String query="Delete from furniture where nameUser="+"'"+f.getNameFurniture()+"'";
 			statement=con.prepareStatement(query);
 			statement.executeUpdate();
 

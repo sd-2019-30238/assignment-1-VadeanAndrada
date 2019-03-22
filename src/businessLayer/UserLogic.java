@@ -8,16 +8,16 @@ import dataAcces.User;
 public class UserLogic {
 	
 	
-	public int checkNewUser(String name, String email, String phone, String pasword) {
+	public int checkNewUser(String name, String email, String phone, String password) {
 		ManageUser mangeUser=new ManageUser();
-		if(name.length()==0||email.length()==0||phone.length()==0||pasword.length()==0)
+		if(name.length()==0||email.length()==0||phone.length()==0||password.length()==0)
 			return 0;
 		int noUser=mangeUser.searchUserByName(name);
 		if(noUser!=0 )
 			return 0;
 		if(checkPhone(phone)!=1)
 			return 0;
-		if(pasword.length()<8)
+		if(password.length()<8)
 			return 0;
 		return 1;	
 	}
@@ -42,22 +42,19 @@ public class UserLogic {
 		return 1;
 	}
 	
-	public int logInUser(String name, String pasword) {
-		User u= new User();
-		u.setPasword(pasword);
-		u.setNameUser(name);
+	public int logInUser(String name, String password) {
 		ManageUser manageUser= new ManageUser();
-		if(manageUser.searchUserByNamePasword(name, pasword)==0) {
+		if(manageUser.searchUserByNamePassword(name, password)==0) {
 			System.out.println("We can't find your account!");	
 			return 0;
 		}		
 		return 1; 
 	}
-	public ArrayList<String[]> showFurniture(String section, String name, String pasword){
+	public ArrayList<String[]> showFurniture(String section, String name, String password){
 		ArrayList<String[]> allFurnitures=new ArrayList<String[]>();
 		
 		ManageUser manageUser=new ManageUser();
-		int userValid=manageUser.searchUserByNamePasword(name, pasword);
+		int userValid=manageUser.searchUserByNamePassword(name, password);
 		if(userValid==1) {
 			FurnitureLogic furniture=new FurnitureLogic();
 			allFurnitures= furniture.seeFurniture(section);

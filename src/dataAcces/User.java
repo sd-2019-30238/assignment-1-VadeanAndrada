@@ -5,19 +5,19 @@ public class User {
 	private String nameUser;
 	private String email;
 	private String phoneUser;
-	private String pasword;
+	private String password;
 	
-	public String getPasword() {
-		return pasword;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasword(String pasword) {
-		this.pasword = pasword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public User(String nameUser, String email, String phoneUser,String pasword) {
+	public User(String nameUser, String email, String phoneUser,String password) {
 		this.nameUser=nameUser;
 		this.email=email;
 		this.phoneUser=phoneUser;
-		this.pasword=pasword;
+		this.password=password;
 	}
 	public User() {}
 	public String getPhoneUser() {

@@ -6,15 +6,19 @@ public class Furniture {
 	private String type;
 	private String discount;
 	private String price;
+	private int number;
 	
 	
-	public Furniture(String nameFurniture,String type, String discount, String price) {
+	public Furniture(String nameFurniture,String type, String discount, String price, int number) {
 		this.nameFurniture=nameFurniture;
 		this.type=type;
 		this.discount=discount;
 		this.price=price;
+		this.number=number;
 	}
 	public Furniture() {}
+	
+	
 	public int getIdFurniture() {
 		return idFurniture;
 	}
@@ -44,5 +48,11 @@ public class Furniture {
 	}
 	public void setPrice(String price) {
 		this.price = price;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	} 
 }

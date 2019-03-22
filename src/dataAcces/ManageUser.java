@@ -25,12 +25,12 @@ public class ManageUser {
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement =null;
 		try {
-			String query="Insert into user (nameUser, email, phoneUser, pasword) values (?,?,?,?)";
+			String query="Insert into user (nameUser, email, phoneUser, password) values (?,?,?,?)";
 			statement=con.prepareStatement(query);
 			statement.setString(1, u.getNameUser());
 			statement.setString(2, u.getEmail());
 			statement.setString(3, u.getPhoneUser());
-			statement.setString(4, u.getPasword());
+			statement.setString(4, u.getPassword());
 			statement.executeUpdate();
 		}catch (Exception e) {
 			System.out.println("cannot add into database!=> "+e);
@@ -55,12 +55,12 @@ public class ManageUser {
 		return 0;
 	}
 	
-	public int searchUserByNamePasword(String nameUser, String pasword){
+	public int searchUserByNamePassword(String nameUser, String password){
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameUser) AS total from user where nameUser='"+nameUser+"' and pasword='"+pasword+"'";
+			String query="Select count(nameUser) AS total from user where nameUser='"+nameUser+"' and password='"+password+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();

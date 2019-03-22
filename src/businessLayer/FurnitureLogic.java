@@ -2,6 +2,7 @@ package businessLayer;
 
 import java.util.ArrayList;
 
+import dataAcces.Furniture;
 import dataAcces.ManageFurniture;
 
 public class FurnitureLogic {
@@ -23,5 +24,11 @@ public class FurnitureLogic {
 
 		}
 		return allFurnitures;
+	}
+	public int addNewFurniture(String name, String type, String price, int number, String discount) {
+		Furniture f=new Furniture(name,type,discount, price, number );
+		ManageFurniture manageFurniture=new ManageFurniture();
+		manageFurniture.addFurniture(f);
+		return 1;
 	}
 }
