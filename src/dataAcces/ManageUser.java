@@ -38,12 +38,12 @@ public class ManageUser {
 		
 	}
 	
-	public int searchUserByName(String nameUser){
+	public int searchUserByName(User user){
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameUser) AS total from user where nameUser='"+nameUser+"'";
+			String query="Select count(nameUser) AS total from user where nameUser='"+user.getNameUser()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();
@@ -55,12 +55,12 @@ public class ManageUser {
 		return 0;
 	}
 	
-	public int searchUserByNamePassword(String nameUser, String password){
+	public int searchUserByNamePassword(User user){
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameUser) AS total from user where nameUser='"+nameUser+"' and password='"+password+"'";
+			String query="Select count(nameUser) AS total from user where nameUser='"+user.getNameUser()+"' and password='"+user.getPassword()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();

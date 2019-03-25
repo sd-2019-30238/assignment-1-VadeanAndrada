@@ -35,12 +35,12 @@ public class ManageStaff {
 		
 	}
 	
-	public int searchStaffByNamePassword(String nameStaff, String password){
+	public int searchStaffByNamePassword(Staff s){
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameStaff) AS total from staff where nameStaff='"+nameStaff+"' and pasword='"+password+"'";
+			String query="Select count(nameStaff) AS total from staff where nameStaff='"+s.getNameStaff()+"' and pasword='"+s.getPassword()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();
@@ -53,12 +53,12 @@ public class ManageStaff {
 		return 0;
 	}
 	
-	public int searchStaff(String nameStaff){
+	public int searchStaff(Staff s){
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameStaff) AS total from staff where nameUser='"+nameStaff+"'";
+			String query="Select count(nameStaff) AS total from staff where nameUser='"+s.getNameStaff()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();

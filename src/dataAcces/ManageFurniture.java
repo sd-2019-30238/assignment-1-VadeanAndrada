@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ManageFurniture {
 	
-	public ArrayList<String[]> showAllFurnitures() {
+	public ArrayList<String[]> showAllFurnitures() throws SQLException {
 		Connection con= ConnectionDB.getConnection();
 		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
 		try {
@@ -28,10 +28,12 @@ public class ManageFurniture {
 		}catch (Exception e) {
 			System.out.println("Cannot contect!");
 		}
+	//	con.close();
 		return allFurnitures;
 	}
 	
-	public ArrayList<String[]> showAllOrderByName() {
+	
+	public ArrayList<String[]> showAllOrderByName() throws SQLException {
 		Connection con= ConnectionDB.getConnection();
 		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
 		try {
@@ -50,10 +52,12 @@ public class ManageFurniture {
 		}catch (Exception e) {
 			System.out.println("Cannot contect!");
 		}
+	//	con.close();
 		return allFurnitures;
 	}
 	
-	public ArrayList<String[]> showAllOrderByType() {
+	
+	public ArrayList<String[]> showAllOrderByType() throws SQLException {
 		Connection con= ConnectionDB.getConnection();
 		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
 		try {
@@ -72,10 +76,12 @@ public class ManageFurniture {
 		}catch (Exception e) {
 			System.out.println("Cannot contect!");
 		}
+	//	con.close();
 		return allFurnitures;
 	}
 	
-	public ArrayList<String[]> showAllOrderByPrice() {
+	
+	public ArrayList<String[]> showAllOrderByPrice() throws SQLException {
 		Connection con= ConnectionDB.getConnection();
 		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
 		try {
@@ -94,10 +100,12 @@ public class ManageFurniture {
 		}catch (Exception e) {
 			System.out.println("Cannot contect!");
 		}
+	//	con.close();
 		return allFurnitures;
 	}
 	
-	public void addFurniture(Furniture f) {
+	
+	public void addFurniture(Furniture f) throws SQLException {
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement =null;
 		try {
@@ -109,17 +117,20 @@ public class ManageFurniture {
 			statement.setString(4, f.getPrice());
 			statement.setString(5, f.getNumber()+"");
 			statement.executeUpdate();
+			
 		}catch (Exception e) {
 			System.out.println("cannot add into database!=> "+e);
 		}		
+		//con.close();
 	}
 	
-	public int searchFruniture(String nameFurniture){
+	
+	public int searchFruniture(Furniture f) throws SQLException{
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameFurniture) AS total from user where nameFurniture='"+nameFurniture+"'";
+			String query="Select count(nameFurniture) AS total from furniture where nameFurniture='"+f.getNameFurniture()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();
@@ -128,17 +139,119 @@ public class ManageFurniture {
 		}catch (Exception e) {
 			System.out.println("can't find the furniture "+e);
 		}
+	//	con.close();
 		return 0;
 	}
+	
 	
 	public void deleteFurniture(Furniture f)throws SQLException{
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement=null;
 		try {
-			String query="Delete from furniture where nameUser="+"'"+f.getNameFurniture()+"'";
+			String query="Delete from furniture where nameFurniture="+"'"+f.getNameFurniture()+"'";
 			statement=con.prepareStatement(query);
 			statement.executeUpdate();
+		//	con.close();
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
+	
+	public String getPrice(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		Statement statement=null;
+		ResultSet result=null;
+		String price="";
+		try {
+			String query="Select price from furniture where nameFurniture='"+f.getNameFurniture()+"'";
+			statement=con.createStatement();
+			result=statement.executeQuery(query);
+			result.next();
+			price = result.getString("price");
+			System.out.println(price);
+			return price;
+		}catch (Exception e) {
+			System.out.println("error getPrice: "+e);
+		}
+		return price;
 
+	}
+	
+	public String getDiscount(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		Statement statement=null;
+		ResultSet result=null;
+		String discount="";
+		try {
+			String query="Select discount from furniture where nameFurniture='"+f.getNameFurniture()+"'";
+			statement=con.createStatement();
+			result=statement.executeQuery(query);
+			result.next();
+			discount = result.getString("discount");
+			System.out.println(discount);
+			return discount;
+		}catch (Exception e) {
+			System.out.println("error getPrice: "+e);
+		}
+		return discount;
+
+	}
+	
+	public int getCantity(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		Statement statement=null;
+		ResultSet result=null;
+		int cantity=0;
+		try {
+			String query="Select number from furniture where nameFurniture='"+f.getNameFurniture()+"'";
+			statement=con.createStatement();
+			result=statement.executeQuery(query);
+			result.next();
+			cantity = result.getInt("number");		
+			return cantity;
+		}catch (Exception e) {
+			System.out.println("error getCantiatet: "+e);
+		}
+		return cantity;
+	}
+	
+	public void updateCanity(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try { 
+			String query="Update furniture set number="+f.getNumber()+" where nameFurniture='"+f.getNameFurniture()+"'";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
+	
+	public void updatePrice(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try { 
+			String query="Update furniture set price="+f.getPrice()+" where nameFurniture='"+f.getNameFurniture()+"'";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
+	
+	public void applyDiscount(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try { 
+			String query="Update furniture set discount="+f.getDiscount()+" where nameFurniture='"+f.getNameFurniture()+"'";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
 		}catch (Exception e) {
 			System.out.println("no database "+e);
 		}

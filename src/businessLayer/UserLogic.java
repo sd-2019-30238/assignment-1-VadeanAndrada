@@ -1,5 +1,6 @@
 package businessLayer;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dataAcces.ManageUser;
@@ -10,9 +11,11 @@ public class UserLogic {
 	
 	public int checkNewUser(String name, String email, String phone, String password) {
 		ManageUser mangeUser=new ManageUser();
+		User user=new User();
+		user.setNameUser(name);
 		if(name.length()==0||email.length()==0||phone.length()==0||password.length()==0)
 			return 0;
-		int noUser=mangeUser.searchUserByName(name);
+		int noUser=mangeUser.searchUserByName(user);
 		if(noUser!=0 )
 			return 0;
 		if(checkPhone(phone)!=1)
@@ -44,17 +47,22 @@ public class UserLogic {
 	
 	public int logInUser(String name, String password) {
 		ManageUser manageUser= new ManageUser();
-		if(manageUser.searchUserByNamePassword(name, password)==0) {
+		User user=new User();
+		user.setNameUser(name);
+		user.setPassword(password);
+		if(manageUser.searchUserByNamePassword(user)==0) {
 			System.out.println("We can't find your account!");	
 			return 0;
 		}		
 		return 1; 
 	}
-	public ArrayList<String[]> showFurniture(String section, String name, String password){
+	public ArrayList<String[]> showFurniture(String section, String name, String password) throws SQLException{
 		ArrayList<String[]> allFurnitures=new ArrayList<String[]>();
-		
+		User user=new User();
+		user.setNameUser(name);
+		user.setPassword(password);
 		ManageUser manageUser=new ManageUser();
-		int userValid=manageUser.searchUserByNamePassword(name, password);
+		int userValid=manageUser.searchUserByNamePassword(user);
 		if(userValid==1) {
 			FurnitureLogic furniture=new FurnitureLogic();
 			allFurnitures= furniture.seeFurniture(section);
