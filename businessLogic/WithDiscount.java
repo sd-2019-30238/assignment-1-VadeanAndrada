@@ -1,4 +1,4 @@
-package businessLayer;
+package businessLogic;
 
 import java.sql.SQLException;
 
@@ -32,9 +32,19 @@ public class WithDiscount implements Discount{
 		ManageFurniture manageFurniture=new ManageFurniture();
 		f.setNameFurniture(nameFurniture);
 		String discountString= manageFurniture.getDiscount(f);
-		float dicount= Float.parseFloat(discountString);
-		if(dicount>0) {
-			
+		float discount= Float.parseFloat(discountString);
+		float newDiscount=100-discount;
+		String priceString=manageFurniture.getPrice(f);
+		float price= Float.parseFloat(priceString);
+		
+		
+		if(discount>0) {
+			float oldPrice=(price/100)/newDiscount;
+			priceString=oldPrice+"";
+			f.setPrice(priceString);
+			manageFurniture.updatePrice(f);
+			f.setDiscount(0+"");
+			manageFurniture.applyDiscount(f);
 		}	
 		return "";
 	}
