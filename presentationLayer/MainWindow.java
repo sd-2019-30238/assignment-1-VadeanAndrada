@@ -23,7 +23,7 @@ public class MainWindow extends JFrame{
 		setComp();
 		contentPanel.add(btnUser);
 		contentPanel.add(btnStaff);
-		contentPanel.setPreferredSize(new Dimension(300, 500));
+		contentPanel.setPreferredSize(new Dimension(200, 300));
 		frame.setContentPane(contentPanel);
 		frame.pack();
 		frame.setVisible(true);
@@ -32,10 +32,10 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void setComp() {
-		
-		btnUser=new JButton("LogIn USER");
+		 
+		btnUser=new JButton("LogIn User");
 		btnUser.setToolTipText("you are an USER");
-		btnUser.setBounds(80, 100, 100, 100);
+		btnUser.setBounds(80, 106, 100, 45);
 		btnUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LogInUser user=new LogInUser();
@@ -46,7 +46,7 @@ public class MainWindow extends JFrame{
 		
 		btnStaff=new JButton("LogIn Staff");
 		btnStaff.setToolTipText("you are from STAFF");
-		btnStaff.setBounds(80,200, 100, 100);
+		btnStaff.setBounds(80,200, 100, 45);
         btnStaff.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {

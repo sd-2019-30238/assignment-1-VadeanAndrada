@@ -15,7 +15,7 @@ public class ManageUser {
 			Statement statement=con.createStatement();
 			ResultSet result=statement.executeQuery(query);
 			while(result.next()) {
-				System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4));
+				System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+" "+result.getString(5));
 			}
 		}catch (Exception e) {
 			System.out.println("Cannot contect!");
@@ -25,12 +25,14 @@ public class ManageUser {
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement =null;
 		try {
-			String query="Insert into user (nameUser, email, phoneUser, password) values (?,?,?,?)";
+			String query="Insert into user (nameUser, email, phoneUser, password, address, isOnline) values (?,?,?,?,?,?)";
 			statement=con.prepareStatement(query);
 			statement.setString(1, u.getNameUser());
 			statement.setString(2, u.getEmail());
 			statement.setString(3, u.getPhoneUser());
 			statement.setString(4, u.getPassword());
+			statement.setString(5, u.getAddress());
+			statement.setInt(6,0);
 			statement.executeUpdate();
 		}catch (Exception e) {
 			System.out.println("cannot add into database!=> "+e);

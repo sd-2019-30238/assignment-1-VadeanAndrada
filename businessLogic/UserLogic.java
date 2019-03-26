@@ -9,15 +9,15 @@ import dataAcces.User;
 public class UserLogic {
 	
 	
-	public int checkNewUser(String name, String email, String phone, String password) {
+	public int checkNewUser(String name, String email, String phone, String password, String address) {
 		ManageUser mangeUser=new ManageUser();
 		User user=new User();
 		user.setNameUser(name);
-		if(name.length()==0||email.length()==0||phone.length()==0||password.length()==0)
+		if(name.length()==0||email.length()==0||phone.length()==0||password.length()==0||address.length()==0)
 			return 0;
 		int noUser=mangeUser.searchUserByName(user);
 		if(noUser!=0 )
-			return 0;
+			return 2;
 		if(checkPhone(phone)!=1)
 			return 0;
 		if(password.length()<8)
@@ -25,11 +25,14 @@ public class UserLogic {
 		return 1;	
 	}
 	
-	public int addUser(String name, String email, String phone, String pasword) {
+	public int addUser(String name, String email, String phone, String pasword, String address) {
 		ManageUser manageUser=new ManageUser();
-		if(checkNewUser(name, email,phone,pasword)==0)
+		if(checkNewUser(name, email,phone,pasword,address)==2)
+			return 2;//mai am un user cu acelasi nume
+		if(checkNewUser(name, email,phone,pasword,address)==0)
 			return 0;
-		User user=new User(name, email,phone, pasword);
+		User user=new User(name, email,phone, pasword, address);
+		user.setIsOnline(0);
 		manageUser.addUser(user);
 		return 1;
 	}
@@ -56,6 +59,8 @@ public class UserLogic {
 		}		
 		return 1; 
 	}
+	
+	
 	public ArrayList<String[]> showFurniture(String section, String name, String password) throws SQLException{
 		ArrayList<String[]> allFurnitures=new ArrayList<String[]>();
 		User user=new User();

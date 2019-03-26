@@ -6,15 +6,15 @@ public class Furniture {
 	private String type;
 	private String discount;
 	private String price;
-	private int number;
+	private int quantity;
 	
 	
-	public Furniture(String nameFurniture,String type, String discount, String price, int number) {
+	public Furniture(String nameFurniture,String type, String discount, String price, int quantity) {
 		this.nameFurniture=nameFurniture;
 		this.type=type;
 		this.discount=discount;
 		this.price=price;
-		this.number=number;
+		this.quantity=quantity;
 	}
 	
 	
@@ -91,16 +91,16 @@ public class Furniture {
 	}
 	
 	
-	public int getNumber() {
+	public int getQuantity() {
 		
-		return number;
+		return quantity;
 		
 	}
 	
 	
-	public void setNumber(int number) {
+	public void setQuantity(int quantity) {
 		
-		this.number = number;
+		this.quantity = quantity;
 		
 	} 
 }

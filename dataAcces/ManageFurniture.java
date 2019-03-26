@@ -115,7 +115,7 @@ public class ManageFurniture {
 			statement.setString(2, f.getType());
 			statement.setString(3, f.getDiscount());
 			statement.setString(4, f.getPrice());
-			statement.setString(5, f.getNumber()+"");
+			statement.setString(5, f.getQuantity()+"");
 			statement.executeUpdate();
 			
 		}catch (Exception e) {
@@ -220,7 +220,7 @@ public class ManageFurniture {
 		PreparedStatement st=null;
 		int res=0;
 		try { 
-			String query="Update furniture set number="+f.getNumber()+" where nameFurniture='"+f.getNameFurniture()+"'";
+			String query="Update furniture set number="+f.getQuantity()+" where nameFurniture='"+f.getNameFurniture()+"'";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	

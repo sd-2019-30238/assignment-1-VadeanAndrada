@@ -19,9 +19,9 @@ public class StaffLogic {
 		}		
 		return 1; 
 	}
-	public void addFurniture(String name, String type, String price, int number, String discount) throws SQLException {
+	public void addFurniture(String name, String type, String price, int quantity, String discount) throws SQLException {
 		FurnitureLogic furniture= new FurnitureLogic();
-		furniture.addNewFurniture(name, type, price, number, discount);
+		furniture.addNewFurniture(name, type, price, quantity, discount);
 	}
 	
 	
