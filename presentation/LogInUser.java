@@ -1,4 +1,4 @@
-package presentationLayer;
+package presentation;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -67,7 +67,11 @@ public class LogInUser extends JFrame {
 				if(isOK==0)
 					JOptionPane.showMessageDialog(frame,
 							"Username-ul sau parola sunt gresite! Incearca cu mai multa atentie!");
-				
+				if(isOK==1) {
+					UserWindow userWindow=new UserWindow();
+					userWindow.setVisible(true);
+					frame.setVisible(false);
+				}
 			}
 		});
 		btnLogin.setBounds(118, 227, 120, 23);

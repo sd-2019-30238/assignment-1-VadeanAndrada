@@ -1,4 +1,4 @@
-package presentationLayer;
+package presentation;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;

@@ -33,7 +33,7 @@ public class ManageFurniture {
 	}
 	
 	
-	public ArrayList<String[]> showAllOrderByName() throws SQLException {
+	public ArrayList<String[]> showAllOrderedByName() throws SQLException {
 		Connection con= ConnectionDB.getConnection();
 		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
 		try {
@@ -43,8 +43,8 @@ public class ManageFurniture {
 			while(result.next()) {
 			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
-				for(int i=0; i<5;i++) {		
-					oneRow[i]=result.getString(i+1);
+				for(int i=0; i<4;i++) {		
+					oneRow[i]=result.getString(i+2);
 					System.out.println(oneRow[i]);
 				}
 				allFurnitures.add(oneRow);
@@ -57,7 +57,7 @@ public class ManageFurniture {
 	}
 	
 	
-	public ArrayList<String[]> showAllOrderByType() throws SQLException {
+	public ArrayList<String[]> showAllOrderedByType() throws SQLException {
 		Connection con= ConnectionDB.getConnection();
 		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
 		try {
@@ -81,7 +81,7 @@ public class ManageFurniture {
 	}
 	
 	
-	public ArrayList<String[]> showAllOrderByPrice() throws SQLException {
+	public ArrayList<String[]> showAllOrderedByPrice() throws SQLException {
 		Connection con= ConnectionDB.getConnection();
 		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
 		try {
@@ -91,8 +91,8 @@ public class ManageFurniture {
 			while(result.next()) {
 			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
-				for(int i=0; i<5;i++) {		
-					oneRow[i]=result.getString(i+1);
+				for(int i=0; i<4;i++) {		
+					oneRow[i]=result.getString(i+2);
 					System.out.println(oneRow[i]);
 				}
 				allFurnitures.add(oneRow);

@@ -57,6 +57,122 @@ public class ManageUser {
 		return 0;
 	}
 	
+	public int getIsOnline(){
+		Connection con=ConnectionDB.getConnection();
+		Statement statement=null;
+		ResultSet result=null;
+		try {
+			String query="Select count(isOnline) AS total from user where isOnline=1";
+			statement=con.createStatement();
+			result=statement.executeQuery(query);
+			result.next();
+			int noUser=result.getInt("total");
+			return noUser;
+		}catch (Exception e) {
+			System.out.println("can't find the user "+e);
+		}
+		return 0;
+	}
+	
+	public User getIsOnlineUserName(){
+		Connection con=ConnectionDB.getConnection();
+		User user= new User();
+		Statement statement=null;
+		ResultSet result=null;
+		try {
+			String query="Select nameUser from user where isOnline=1";
+			statement=con.createStatement();
+			result=statement.executeQuery(query);
+			result.next();
+			String username=result.getString(1);
+			user.setNameUser(username);
+			return user;
+		}catch (Exception e) {
+			System.out.println("can't find the user "+e);
+		}
+		return user;
+	}
+	
+	
+	public User getIsOnlineUserId(){
+		Connection con=ConnectionDB.getConnection();
+		User user= new User();
+		Statement statement=null;
+		ResultSet result=null;
+		try {
+			String query="Select idUser from user where isOnline=1";
+			statement=con.createStatement();
+			result=statement.executeQuery(query);
+			result.next();
+			int id=Integer.parseInt(result.getString(1));
+			user.setIdUser(id);
+			return user;
+		}catch (Exception e) {
+			System.out.println("can't find the user "+e);
+		}
+		return user;
+	}
+	
+	
+	public User getIsOnlineUserId(User u){
+		Connection con=ConnectionDB.getConnection();
+		User user= new User();
+		Statement statement=null;
+		ResultSet result=null;
+		try {
+			String query="Select idUser from user where nameUser= '"+u.getNameUser()+"'";
+			statement=con.createStatement();
+			result=statement.executeQuery(query);
+			result.next();
+			int id=Integer.parseInt(result.getString(1));
+			user.setIdUser(id);
+			return user;
+		}catch (Exception e) {
+			System.out.println("can't find the user "+e);
+		}
+		return user;
+	}
+	
+	
+	
+	public void setIsOnlineUser(User user){
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement statement=null;
+		User aux=new User();
+		aux=getIsOnlineUserId(user);
+		int idUser=aux.getIdUser();
+		user.setIdUser(idUser);
+		int result=0;
+		try {
+			String query="UPDATE user SET isOnline = 1 WHERE idUser = "+idUser;
+			statement=con.prepareStatement(query);
+			statement.executeUpdate();
+			result=statement.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("can't find the user "+e);
+		}
+
+	}
+	
+	public void setIsOfflineUser(){
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement statement=null;
+		User user=new User();
+		user=getIsOnlineUserId();			
+		int result=0;
+		try {
+			String query="UPDATE user SET isOnline = 0 WHERE idUser = "+user.getIdUser()
+			;
+			statement=con.prepareStatement(query);
+			statement.executeUpdate();
+			result=statement.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("can't find the user "+e);
+		}
+	}
+	
+	
+	
 	public int searchUserByNamePassword(User user){
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
@@ -87,6 +203,8 @@ public class ManageUser {
 			System.out.println("no database "+e);
 		}
 	}
+	
+	
 }
 
 

@@ -1,4 +1,4 @@
-package presentationLayer;
+package presentation;
 
 public class StaffWindow {
 

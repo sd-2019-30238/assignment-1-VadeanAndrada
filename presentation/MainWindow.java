@@ -1,4 +1,4 @@
-package presentationLayer;
+package presentation;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;

@@ -56,23 +56,15 @@ public class UserLogic {
 		if(manageUser.searchUserByNamePassword(user)==0) {
 			System.out.println("We can't find your account!");	
 			return 0;
-		}		
+		}	
+		manageUser.setIsOnlineUser(user);
 		return 1; 
 	}
 	
-	
-	public ArrayList<String[]> showFurniture(String section, String name, String password) throws SQLException{
-		ArrayList<String[]> allFurnitures=new ArrayList<String[]>();
-		User user=new User();
-		user.setNameUser(name);
-		user.setPassword(password);
+	public void logOutUser() {
 		ManageUser manageUser=new ManageUser();
-		int userValid=manageUser.searchUserByNamePassword(user);
-		if(userValid==1) {
-			FurnitureLogic furniture=new FurnitureLogic();
-			allFurnitures= furniture.seeFurniture(section);
-		}
-		return allFurnitures;
+		manageUser.setIsOfflineUser();
 	}
+	
 
 }

@@ -11,14 +11,14 @@ public class FurnitureLogic {
 		ArrayList<String[]> allFurnitures=new ArrayList<String[]>();
 		ManageFurniture manageFurniture=new ManageFurniture();
 		switch(selection) {
-		case "orderByName":
-			allFurnitures=manageFurniture.showAllOrderByName();
+		case "orderedByName":
+			allFurnitures=manageFurniture.showAllOrderedByName();
 			break;
-		case "orderByPrice":
-			allFurnitures=manageFurniture.showAllOrderByPrice();
+		case "orderedByPrice":
+			allFurnitures=manageFurniture.showAllOrderedByPrice();
 			break;
-		case "orderByType":
-			allFurnitures=manageFurniture.showAllOrderByType();
+		case "orderedByType":
+			allFurnitures=manageFurniture.showAllOrderedByType();
 			break;
 		default:
 			allFurnitures=manageFurniture.showAllFurnitures();		
