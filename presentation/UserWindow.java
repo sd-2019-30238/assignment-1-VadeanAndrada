@@ -128,6 +128,17 @@ public class UserWindow extends JFrame{
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		getContentPane().add(table);
 		
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseCicked(java.awt.event.MouseEvent evt) {
+				int row=table.rowAtPoint(evt.getPoint());
+				String name=table.getValueAt(row, 0).toString();
+				String pret=table.getValueAt(row, 1).toString();
+				String discount=table.getValueAt(row, 2).toString();
+				String tip=table.getValueAt(row, 3).toString();
+				
+				
+			}
+		});
 	
 		btnAfiseazaProduse.setBounds(451, 126, 118, 23);
 		getContentPane().add(btnAfiseazaProduse);

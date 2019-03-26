@@ -41,7 +41,6 @@ public class ManageFurniture {
 			Statement statement=con.createStatement();
 			ResultSet result=statement.executeQuery(query);
 			while(result.next()) {
-			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
 				for(int i=0; i<4;i++) {		
 					oneRow[i]=result.getString(i+2);
@@ -65,10 +64,9 @@ public class ManageFurniture {
 			Statement statement=con.createStatement();
 			ResultSet result=statement.executeQuery(query);
 			while(result.next()) {
-			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
-				for(int i=0; i<5;i++) {		
-					oneRow[i]=result.getString(i+1);
+				for(int i=0; i<4;i++) {		
+					oneRow[i]=result.getString(i+2);
 					System.out.println(oneRow[i]);
 				}
 				allFurnitures.add(oneRow);
@@ -89,7 +87,6 @@ public class ManageFurniture {
 			Statement statement=con.createStatement();
 			ResultSet result=statement.executeQuery(query);
 			while(result.next()) {
-			//	System.out.println(result.getString(1)+" "+result.getString(2)+ " "+result.getString(3)+" "+result.getString(4)+ " "+result.getString(5));
 				String[] oneRow= new String[100];
 				for(int i=0; i<4;i++) {		
 					oneRow[i]=result.getString(i+2);
