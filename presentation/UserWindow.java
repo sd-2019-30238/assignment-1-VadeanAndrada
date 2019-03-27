@@ -2,6 +2,7 @@ package presentation;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.FurnitureLogic;
+import businessLogic.ShoppingCartLogic;
 import businessLogic.UserLogic;
 
 import javax.swing.JComboBox;
@@ -21,6 +23,9 @@ import javax.swing.DefaultComboBoxModel;
 public class UserWindow extends JFrame{
 	private JTable table;
 	private JFrame frame;
+	private JButton btnAddCart,btnClickHere;
+	private String name;
+	private JComboBox comboBoxFilter;
 	public UserWindow() {
 		
 		frame=new JFrame();	
@@ -36,27 +41,24 @@ public class UserWindow extends JFrame{
 		JButton btnCart = new JButton("Cos");
 		btnCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Order order=new Order();
+				order.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		btnCart.setBounds(498, 7, 89, 23);
 		getContentPane().add(btnCart);
 		
 	
-		JButton btnAddCart = new JButton("Adauga in cos");
-		btnAddCart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAddCart.setBounds(451, 58, 118, 23);
-		getContentPane().add(btnAddCart);
 		
-		JButton btnDeleteCart = new JButton("Sterge din cos");
-		btnDeleteCart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnDeleteCart.setBounds(451, 92, 118, 23);
-		getContentPane().add(btnDeleteCart);
+//		
+//		JButton btnDeleteCart = new JButton("Sterge din cos");
+//		btnDeleteCart.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//			}
+//		});
+//		btnDeleteCart.setBounds(451, 92, 118, 23);
+//		getContentPane().add(btnDeleteCart);
 		
 		JLabel lblSelecteazaProdusulPe = new JLabel("Selecteaza produsul pe care il doresti si apasa pe butonul \"Adauga in cos\".");
 		lblSelecteazaProdusulPe.setBounds(28, 23, 373, 14);
@@ -70,18 +72,39 @@ public class UserWindow extends JFrame{
 		lblSorteaza.setBounds(28, 48, 82, 14);
 		getContentPane().add(lblSorteaza);
 		
-		JComboBox comboBoxFilter = new JComboBox();
+		comboBoxFilter = new JComboBox();
 		comboBoxFilter.setModel(new DefaultComboBoxModel(new String[] {"tip", "nume", "pret"}));
 		comboBoxFilter.setToolTipText("");
 		comboBoxFilter.setBounds(92, 48, 89, 20);
 		getContentPane().add(comboBoxFilter);
 		
-		JButton btnClickHere = new JButton("Click here!");
+		btnClickHere = new JButton("Click here!");
 		btnClickHere.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				FurnitureLogic furniture=new FurnitureLogic();
+				ArrayList<String[]> rows=new ArrayList<String[]>();
+				try {
+					rows=furniture.seeFurniture(comboBoxFilter.getSelectedItem().toString());
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				DefaultTableModel tableModel= new DefaultTableModel();
+				String[] col= {"nume", "pret","discount","tip"};
+			
+				for(String s: col) {
+						tableModel.addColumn(s);
+				}
+				for(String[] r: rows) {
+					tableModel.addRow(r);
+				}
+				
+				table.setModel(tableModel);	
+				
+				
+				
 			}
 		});
-		btnClickHere.setBounds(191, 48, 89, 23);
+		btnClickHere.setBounds(191, 48, 100, 23);
 		getContentPane().add(btnClickHere);
 		
 		JButton btnBack = new JButton("BACK");
@@ -103,7 +126,7 @@ public class UserWindow extends JFrame{
 				FurnitureLogic furniture=new FurnitureLogic();
 				ArrayList<String[]> rows=new ArrayList<String[]>();
 				try {
-					rows=furniture.seeFurniture("orderedByName");
+					rows=furniture.seeFurniture("nume");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -128,19 +151,38 @@ public class UserWindow extends JFrame{
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		getContentPane().add(table);
 		
+		btnAddCart = new JButton("Adauga in cos");
+		btnAddCart.setBounds(451, 58, 125, 23);
+		getContentPane().add(btnAddCart);
+		
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseCicked(java.awt.event.MouseEvent evt) {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				System.out.println("!!!!!!!!!!!!!!!!!!!!");
 				int row=table.rowAtPoint(evt.getPoint());
-				String name=table.getValueAt(row, 0).toString();
-				String pret=table.getValueAt(row, 1).toString();
-				String discount=table.getValueAt(row, 2).toString();
-				String tip=table.getValueAt(row, 3).toString();
+			    name=table.getValueAt(row, 0).toString();
+			    System.out.println(name+"nume produs selectat1");
+				btnAddCart.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ShoppingCartLogic cart=new ShoppingCartLogic();
+						try {
+							System.out.println(name+"nume produs selectat");
+							Boolean isOk=cart.addShoppingCart(name);
+							if(isOk==false) {
+								JOptionPane.showMessageDialog(frame,
+										"Nu putem adauga acest produs, stocul este indisponibil! Ne pare rau!");
+					
+							}
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					}
+				});
 				
 				
 			}
 		});
 	
-		btnAfiseazaProduse.setBounds(451, 126, 118, 23);
+		btnAfiseazaProduse.setBounds(451, 126, 135, 23);
 		getContentPane().add(btnAfiseazaProduse);
 		
 		

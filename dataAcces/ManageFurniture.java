@@ -200,14 +200,14 @@ public class ManageFurniture {
 		ResultSet result=null;
 		int cantity=0;
 		try {
-			String query="Select number from furniture where nameFurniture='"+f.getNameFurniture()+"'";
+			String query="Select quantity from furniture where nameFurniture='"+f.getNameFurniture()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();
-			cantity = result.getInt("number");		
+			cantity = result.getInt("quantity");		
 			return cantity;
 		}catch (Exception e) {
-			System.out.println("error getCantiatet: "+e);
+			System.out.println("error getCantiate: "+e);
 		}
 		return cantity;
 	}
@@ -217,7 +217,7 @@ public class ManageFurniture {
 		PreparedStatement st=null;
 		int res=0;
 		try { 
-			String query="Update furniture set number="+f.getQuantity()+" where nameFurniture='"+f.getNameFurniture()+"'";
+			String query="Update furniture set quantity="+f.getQuantity()+" where nameFurniture='"+f.getNameFurniture()+"'";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	
