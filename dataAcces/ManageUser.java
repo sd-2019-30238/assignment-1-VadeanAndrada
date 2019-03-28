@@ -154,6 +154,21 @@ public class ManageUser {
 
 	}
 	
+	public void setIsOffline(){
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement statement=null;
+		int result=0;
+		try {
+			String query="UPDATE user SET isOnline = 0";
+			statement=con.prepareStatement(query);
+			statement.executeUpdate();
+			result=statement.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("can't find the user "+e);
+		}
+
+	}
+	
 	public void setIsOfflineUser(){
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement=null;

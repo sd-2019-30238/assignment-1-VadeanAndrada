@@ -2,6 +2,10 @@ package dataAcces;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ManageOrder {
 	public void addOrder(String username, String totalPrice) {
@@ -32,5 +36,70 @@ public class ManageOrder {
 		}catch (Exception e) {
 			System.out.println("no database "+e);
 		}
+	}
+	
+	
+	public ArrayList<String[]> showAll() throws SQLException {
+		Connection con= ConnectionDB.getConnection();
+		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
+		try {
+			String query="Select * from orderr where delivered=0";
+			Statement statement=con.createStatement();
+			ResultSet result=statement.executeQuery(query);
+			while(result.next()) {
+				String[] oneRow= new String[100];
+				for(int i=0; i<3;i++) {		
+					oneRow[i]=result.getString(i+2);
+					System.out.println(oneRow[i]);
+				}
+				allFurnitures.add(oneRow);
+			}
+		}catch (Exception e) {
+			System.out.println("Cannot contect!");
+		}
+		return allFurnitures;
+	}
+	
+	
+	public ArrayList<String[]> getDeliveredUserOrders(User u) throws SQLException {
+		Connection con= ConnectionDB.getConnection();
+		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
+		try {
+			String query="Select * from orderr where username='"+u.getNameUser()+"' and delivered=1";
+			Statement statement=con.createStatement();
+			ResultSet result=statement.executeQuery(query);
+			while(result.next()) {
+				String[] oneRow= new String[100];
+				for(int i=0; i<2;i++) {		
+					oneRow[i]=result.getString(i+2);
+					System.out.println(oneRow[i]);
+				}
+				allFurnitures.add(oneRow);
+			}
+		}catch (Exception e) {
+			System.out.println("Cannot contect!");
+		}
+		return allFurnitures;
+	}
+	
+	public ArrayList<String[]> getNotDeliveredUserOrders(User u) throws SQLException {
+		Connection con= ConnectionDB.getConnection();
+		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
+		try {
+			String query="Select * from orderr where username='"+u.getNameUser()+"' and delivered=0";
+			Statement statement=con.createStatement();
+			ResultSet result=statement.executeQuery(query);
+			while(result.next()) {
+				String[] oneRow= new String[100];
+				for(int i=0; i<2;i++) {		
+					oneRow[i]=result.getString(i+2);
+					System.out.println(oneRow[i]);
+				}
+				allFurnitures.add(oneRow);
+			}
+		}catch (Exception e) {
+			System.out.println("Cannot contect!");
+		}
+		return allFurnitures;
 	}
 }

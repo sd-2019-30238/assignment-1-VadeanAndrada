@@ -77,6 +77,8 @@ public class Order extends JFrame {
 				ShoppingCartLogic cart=new ShoppingCartLogic();
 				String totalPrice=cart.getTotal()+"";
 				newOrder.addOrder(totalPrice);
+				cart.setCartDone();
+				cart.deleteCart();
 			}
 		});
 		btnFinalizareComanda.setBounds(296, 212, 150, 23);

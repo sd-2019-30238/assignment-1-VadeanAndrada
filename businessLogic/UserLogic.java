@@ -7,8 +7,8 @@ import dataAcces.ManageUser;
 import dataAcces.User;
 
 public class UserLogic {
-	
-	
+
+
 	public int checkNewUser(String name, String email, String phone, String password, String address) {
 		ManageUser mangeUser=new ManageUser();
 		User user=new User();
@@ -24,7 +24,7 @@ public class UserLogic {
 			return 0;
 		return 1;	
 	}
-	
+
 	public int addUser(String name, String email, String phone, String pasword, String address) {
 		ManageUser manageUser=new ManageUser();
 		if(checkNewUser(name, email,phone,pasword,address)==2)
@@ -36,7 +36,7 @@ public class UserLogic {
 		manageUser.addUser(user);
 		return 1;
 	}
-	
+
 	public int checkPhone(String phone) {
 		if (phone.length()>10)
 			return 0;
@@ -47,7 +47,7 @@ public class UserLogic {
 		}	
 		return 1;
 	}
-	
+
 	public int logInUser(String name, String password) {
 		ManageUser manageUser= new ManageUser();
 		User user=new User();
@@ -60,11 +60,15 @@ public class UserLogic {
 		manageUser.setIsOnlineUser(user);
 		return 1; 
 	}
-	
+
 	public void logOutUser() {
 		ManageUser manageUser=new ManageUser();
 		manageUser.setIsOfflineUser();
 	}
-	
+	public void setAllUsersOffline() {
+		ManageUser manageUser=new ManageUser();
+		manageUser.setIsOffline();
+
+	}
 
 }

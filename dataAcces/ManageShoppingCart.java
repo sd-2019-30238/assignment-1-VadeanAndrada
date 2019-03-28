@@ -3,6 +3,7 @@ package dataAcces;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class ManageShoppingCart {
 		PreparedStatement st=null;
 		int res=0;
 		try {
-			String query="Delete from shoppingcart where nameProduct="+"'"+f.getNameFurniture()+"' LIMIT 1";
+			String query="Delete from shoppingcart where nameProduct='"+f.getNameFurniture()+"' limit 1";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	
@@ -67,7 +68,7 @@ public class ManageShoppingCart {
 		PreparedStatement st=null;
 		int res=0;
 		try { 
-			String query="Update shoppingcart set delivered= 1 where nameProduct='"+u.getNameUser()+"' and delivered = 0";
+			String query="Update shoppingcart set delivered= 1 where username='"+u.getNameUser()+"' and delivered = 0";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	
@@ -81,7 +82,7 @@ public class ManageShoppingCart {
 		PreparedStatement st=null;
 		int res=0;
 		try { 
-			String query="Update shoppingcart set delivered= 2 where nameProduct='"+u.getNameUser()+"' and delivered = 1";
+			String query="Update shoppingcart set delivered= 2 where username='"+u.getNameUser()+"' and delivered = 1";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	
@@ -95,7 +96,21 @@ public class ManageShoppingCart {
 		PreparedStatement st=null;
 		int res=0;
 		try {
-			String query="Delete from shoppingcart where username="+"'"+u.getNameUser()+"' and delivered= 2 ";
+			String query="Delete from shoppingcart where username="+"'"+u.getNameUser()+"' and delivered= 1 ";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
+	
+	public void updatePrice(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try { 
+			String query="Update shoppingcart set priceProduct="+f.getPrice()+" where nameProduct='"+f.getNameFurniture()+"'";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	

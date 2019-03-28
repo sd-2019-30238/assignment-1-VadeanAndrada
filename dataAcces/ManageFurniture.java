@@ -128,7 +128,7 @@ public class ManageFurniture {
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement =null;
 		try {
-			String query="Insert into furniture (nameFurniture, type, discount, price, number) values (?,?,?,?,?)";
+			String query="Insert into furniture (nameFurniture, type, discount, price, quantity) values (?,?,?,?,?)";
 			statement=con.prepareStatement(query);
 			statement.setString(1, f.getNameFurniture());
 			statement.setString(2, f.getType());
@@ -216,7 +216,7 @@ public class ManageFurniture {
 
 	}
 	
-	public int getCantity(Furniture f)throws SQLException{
+	public int getQuantity(Furniture f)throws SQLException{
 		Connection con=ConnectionDB.getConnection();
 		Statement statement=null;
 		ResultSet result=null;
@@ -234,7 +234,7 @@ public class ManageFurniture {
 		return cantity;
 	}
 	
-	public void updateCanity(Furniture f)throws SQLException{
+	public void updateQuantity(Furniture f)throws SQLException{
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement st=null;
 		int res=0;
@@ -267,7 +267,7 @@ public class ManageFurniture {
 		PreparedStatement st=null;
 		int res=0;
 		try { 
-			String query="Update furniture set discount="+f.getDiscount()+" where nameFurniture='"+f.getNameFurniture()+"'";
+			String query="Update furniture set discount='"+f.getDiscount()+"' where nameFurniture='"+f.getNameFurniture()+"'";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	

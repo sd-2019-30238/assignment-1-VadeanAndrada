@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.FurnitureLogic;
 import businessLogic.ShoppingCartLogic;
 import businessLogic.UserLogic;
+import factory.Discount;
+import factory.DiscountFactory;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +26,7 @@ public class UserWindow extends JFrame{
 	private JTable table;
 	private JFrame frame;
 	private JButton btnAddCart,btnClickHere;
-	private String name;
+	private String name, cantitate;
 	private JComboBox comboBoxFilter;
 	public UserWindow() {
 		
@@ -55,6 +57,13 @@ public class UserWindow extends JFrame{
 		getContentPane().add(lblSelecteazaProdusulPe);
 		
 		JButton btnHistorical = new JButton("Istoric comenzi");
+		btnHistorical.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OrderHistoryWindow hist= new OrderHistoryWindow();
+				hist.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
 		btnHistorical.setBounds(451, 239, 140, 23);
 		getContentPane().add(btnHistorical);
 		
@@ -149,11 +158,15 @@ public class UserWindow extends JFrame{
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				int row=table.rowAtPoint(evt.getPoint());
 			    name=table.getValueAt(row, 0).toString();
+			    cantitate=table.getValueAt(row, 2).toString();
 				btnAddCart.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						ShoppingCartLogic cart=new ShoppingCartLogic();
 						try {
+							System.out.println("test");
 							Boolean isOk=cart.addShoppingCart(name);
+							DiscountFactory.getDiscount(name, cantitate).applyDiscount();;
+							
 							if(isOk==false) {
 								JOptionPane.showMessageDialog(frame,
 										"Nu putem adauga acest produs, stocul este indisponibil! Ne pare rau!");

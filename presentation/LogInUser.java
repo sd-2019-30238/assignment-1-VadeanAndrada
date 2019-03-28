@@ -59,9 +59,7 @@ public class LogInUser extends JFrame {
 				UserLogic user=new UserLogic();
 				String username=fieldUsername.getText();
 				String password = new String(passwordField.getPassword());
-				
-				//char[] pass= passwordField.getPassword();
-				//String password=pass.toString();
+
 				int isOK=user.logInUser(username, password);
 				System.out.println(password+" "+isOK);
 				if(isOK==0)

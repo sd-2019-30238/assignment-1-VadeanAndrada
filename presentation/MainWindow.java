@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import businessLogic.UserLogic;
+
 public class MainWindow extends JFrame{
 	private JFrame frame;
 	private JButton btnUser, btnStaff;
@@ -38,6 +40,8 @@ public class MainWindow extends JFrame{
 		btnUser.setBounds(80, 106, 100, 45);
 		btnUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				UserLogic u= new UserLogic();
+				u.setAllUsersOffline();
 				LogInUser user=new LogInUser();
 				user.setVisible(true);
 				frame.setVisible(false);

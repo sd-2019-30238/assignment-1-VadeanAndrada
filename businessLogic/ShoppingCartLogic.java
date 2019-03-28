@@ -15,7 +15,7 @@ public class ShoppingCartLogic {
 		Furniture f=new Furniture();
 		f.setNameFurniture(nameFurniture);
 		ManageFurniture manageFurniture=new ManageFurniture();
-		int quantity=manageFurniture.getCantity(f);
+		int quantity=manageFurniture.getQuantity(f);
 		String price=manageFurniture.getPrice(f);
 		if(quantity>0) {
 			ManageUser manageUser=new ManageUser();
@@ -26,7 +26,7 @@ public class ShoppingCartLogic {
 			cart.addProduct(f, u);
 			quantity--;
 			f.setQuantity(quantity);
-			manageFurniture.updateCanity(f);
+			manageFurniture.updateQuantity(f);
 			return true;
 		}
 
@@ -40,10 +40,10 @@ public class ShoppingCartLogic {
 		ManageFurniture manageFurniture=new ManageFurniture();
 		ManageShoppingCart cart=new ManageShoppingCart();
 		cart.deleteProduct(f);
-		int quantity=manageFurniture.getCantity(f);
+		int quantity=manageFurniture.getQuantity(f);
 		quantity++;
 		f.setQuantity(quantity);
-		manageFurniture.updateCanity(f);
+		manageFurniture.updateQuantity(f);
 	}
 
 	public ArrayList<String[]> getShoppingCart(){
@@ -80,15 +80,15 @@ public class ShoppingCartLogic {
 		cart.setCartDone(user);
 	}
 	
-	
-	//revin!!!!!
-	public void setCartDelivered() {
-		
+	public void deleteCart() {
 		ManageUser manageUser=new ManageUser();
 		User user=manageUser.getIsOnlineUserName();
 		ManageShoppingCart cart= new ManageShoppingCart();
-		cart.setCartDone(user);
+		cart.deleteShoppingCart(user);
+			
 	}
+	
+	
 
 
 }
