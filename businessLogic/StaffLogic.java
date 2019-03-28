@@ -2,10 +2,10 @@ package businessLogic;
 
 import java.sql.SQLException;
 
-import dataAcces.ManageStaff;
-import dataAcces.ManageUser;
-import dataAcces.Staff;
-import dataAcces.User;
+import dataAccess.ManageStaff;
+import dataAccess.ManageUser;
+import dataAccess.Staff;
+import dataAccess.User;
 
 public class StaffLogic {
 	public int logInStaff(String name, String password) {

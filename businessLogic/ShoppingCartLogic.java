@@ -3,11 +3,11 @@ package businessLogic;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dataAcces.Furniture;
-import dataAcces.ManageFurniture;
-import dataAcces.ManageShoppingCart;
-import dataAcces.ManageUser;
-import dataAcces.User;
+import dataAccess.Furniture;
+import dataAccess.ManageFurniture;
+import dataAccess.ManageShoppingCart;
+import dataAccess.ManageUser;
+import dataAccess.User;
 
 public class ShoppingCartLogic {
 

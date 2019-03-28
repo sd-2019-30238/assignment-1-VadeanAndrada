@@ -1,4 +1,4 @@
-package dataAcces;
+package dataAccess;
 
 public class User {
 	private int idUser;

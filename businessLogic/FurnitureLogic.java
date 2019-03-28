@@ -3,8 +3,8 @@ package businessLogic;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dataAcces.Furniture;
-import dataAcces.ManageFurniture;
+import dataAccess.Furniture;
+import dataAccess.ManageFurniture;
 
 public class FurnitureLogic {
 	public ArrayList<String[]> seeFurniture(String selection) throws SQLException{

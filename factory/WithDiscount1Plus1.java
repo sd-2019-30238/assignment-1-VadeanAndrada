@@ -2,9 +2,9 @@ package factory;
 
 import java.sql.SQLException;
 
-import dataAcces.Furniture;
-import dataAcces.ManageFurniture;
-import dataAcces.ManageShoppingCart;
+import dataAccess.Furniture;
+import dataAccess.ManageFurniture;
+import dataAccess.ManageShoppingCart;
 
 public class WithDiscount1Plus1 implements Discount{
 

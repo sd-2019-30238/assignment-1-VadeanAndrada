@@ -3,10 +3,10 @@ package businessLogic;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dataAcces.ManageOrder;
-import dataAcces.ManageShoppingCart;
-import dataAcces.ManageUser;
-import dataAcces.User;
+import dataAccess.ManageOrder;
+import dataAccess.ManageShoppingCart;
+import dataAccess.ManageUser;
+import dataAccess.User;
 
 public class OrderLogic {
 	

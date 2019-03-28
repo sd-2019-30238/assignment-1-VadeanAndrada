@@ -3,8 +3,8 @@ package businessLogic;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dataAcces.ManageUser;
-import dataAcces.User;
+import dataAccess.ManageUser;
+import dataAccess.User;
 
 public class UserLogic {
 

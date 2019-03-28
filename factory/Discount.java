@@ -2,7 +2,7 @@ package factory;
 
 import java.sql.SQLException;
 
-import dataAcces.Furniture;
+import dataAccess.Furniture;
 
 public interface Discount {
 	

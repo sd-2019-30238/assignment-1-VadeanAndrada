@@ -1,4 +1,4 @@
-package dataAcces;
+package dataAccess;
 
 public class Staff {
 	private int idStff;
