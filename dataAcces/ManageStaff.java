@@ -24,10 +24,10 @@ public class ManageStaff {
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement =null;
 		try {
-			String query="Insert into staff (nameStaff, rol) values (?,?)";
+			String query="Insert into staff (nameStaff, password) values (?,?)";
 			statement=con.prepareStatement(query);
 			statement.setString(1, s.getNameStaff());
-			statement.setString(2, s.getRole());
+			statement.setString(2, s.getPassword());
 			statement.executeUpdate();
 		}catch (Exception e) {
 			System.out.println("cannot add into database!=> "+e);
@@ -40,15 +40,14 @@ public class ManageStaff {
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameStaff) AS total from staff where nameStaff='"+s.getNameStaff()+"' and pasword='"+s.getPassword()+"'";
+			String query="Select count(nameStaff) AS total from staff where nameStaff='"+s.getNameStaff()+"' and password='"+s.getPassword()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();
 			int noUser=result.getInt("total");
-		//	System.out.println("am gasit jnumele si paroloa"+noUser);
 			return noUser;
 		}catch (Exception e) {
-			System.out.println("can't find the user, maybe you don't have an account "+e);
+			System.out.println("can't find the staff account, maybe you don't have an account "+e);
 		}
 		return 0;
 	}
@@ -58,7 +57,7 @@ public class ManageStaff {
 		Statement statement=null;
 		ResultSet result=null;
 		try {
-			String query="Select count(nameStaff) AS total from staff where nameUser='"+s.getNameStaff()+"'";
+			String query="Select count(nameStaff) AS total from staff where nameStaff='"+s.getNameStaff()+"'";
 			statement=con.createStatement();
 			result=statement.executeQuery(query);
 			result.next();

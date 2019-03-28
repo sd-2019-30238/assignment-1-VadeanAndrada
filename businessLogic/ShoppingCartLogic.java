@@ -10,7 +10,7 @@ import dataAcces.ManageUser;
 import dataAcces.User;
 
 public class ShoppingCartLogic {
-	
+
 	public boolean addShoppingCart(String nameFurniture) throws SQLException {
 		Furniture f=new Furniture();
 		f.setNameFurniture(nameFurniture);
@@ -29,11 +29,11 @@ public class ShoppingCartLogic {
 			manageFurniture.updateCanity(f);
 			return true;
 		}
-	
+
 		return false;
 	}
-	
-	
+
+
 	public void deleteProduct(String nameFurniture) throws SQLException {
 		Furniture f=new Furniture();
 		f.setNameFurniture(nameFurniture);
@@ -45,9 +45,9 @@ public class ShoppingCartLogic {
 		f.setQuantity(quantity);
 		manageFurniture.updateCanity(f);
 	}
-	
+
 	public ArrayList<String[]> getShoppingCart(){
-		
+
 		ArrayList<String[]> list= new ArrayList<String[]>();
 		ManageUser manageUser= new ManageUser();
 		User user=manageUser.getIsOnlineUserName();
@@ -58,7 +58,37 @@ public class ShoppingCartLogic {
 		return list;
 
 	}
+	public float getTotal() {
+		ArrayList<String[]> list=getShoppingCart();
+		float total=0.0f;
+		if(list.isEmpty())
+			return total;
+		else {
+			for(String[] aux: list) {
+				float price=Float.parseFloat(aux[1]);
+				total+=price;	
+			}
+			System.out.println(total);}
+		return total;
+	}
+	
+	public void setCartDone() {
+		
+		ManageUser manageUser=new ManageUser();
+		User user=manageUser.getIsOnlineUserName();
+		ManageShoppingCart cart= new ManageShoppingCart();
+		cart.setCartDone(user);
+	}
 	
 	
+	//revin!!!!!
+	public void setCartDelivered() {
+		
+		ManageUser manageUser=new ManageUser();
+		User user=manageUser.getIsOnlineUserName();
+		ManageShoppingCart cart= new ManageShoppingCart();
+		cart.setCartDone(user);
+	}
+
 
 }

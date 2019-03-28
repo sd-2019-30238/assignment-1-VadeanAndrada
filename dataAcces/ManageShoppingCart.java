@@ -30,7 +30,7 @@ public class ManageShoppingCart {
 		PreparedStatement st=null;
 		int res=0;
 		try {
-			String query="Delete from shoppingcart where nameProduct="+"'"+f.getNameFurniture()+"'";
+			String query="Delete from shoppingcart where nameProduct="+"'"+f.getNameFurniture()+"' LIMIT 1";
 			st=con.prepareStatement(query);
 			st.executeUpdate();
 			res=st.executeUpdate();	
@@ -61,5 +61,48 @@ public class ManageShoppingCart {
 		return list;
 		
 	}
+	
+	public void setCartDone(User u) {
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try { 
+			String query="Update shoppingcart set delivered= 1 where nameProduct='"+u.getNameUser()+"' and delivered = 0";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
+	
+	public void setCartDelivered(User u) {
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try { 
+			String query="Update shoppingcart set delivered= 2 where nameProduct='"+u.getNameUser()+"' and delivered = 1";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
+	
+	public void deleteShoppingCart(User u) {
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try {
+			String query="Delete from shoppingcart where username="+"'"+u.getNameUser()+"' and delivered= 2 ";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
+
 
 }

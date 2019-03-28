@@ -102,6 +102,28 @@ public class ManageFurniture {
 	}
 	
 	
+	public ArrayList<String[]> showAll() throws SQLException {
+		Connection con= ConnectionDB.getConnection();
+		ArrayList<String[]> allFurnitures =new ArrayList<String[]>();
+		try {
+			String query="Select * from furniture ORDER BY nameFurniture";
+			Statement statement=con.createStatement();
+			ResultSet result=statement.executeQuery(query);
+			while(result.next()) {
+				String[] oneRow= new String[100];
+				for(int i=0; i<5;i++) {		
+					oneRow[i]=result.getString(i+2);
+					System.out.println(oneRow[i]);
+				}
+				allFurnitures.add(oneRow);
+			}
+		}catch (Exception e) {
+			System.out.println("Cannot contect!");
+		}
+	//	con.close();
+		return allFurnitures;
+	}
+	
 	public void addFurniture(Furniture f) throws SQLException {
 		Connection con=ConnectionDB.getConnection();
 		PreparedStatement statement =null;

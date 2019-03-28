@@ -49,23 +49,13 @@ public class UserWindow extends JFrame{
 		btnCart.setBounds(498, 7, 89, 23);
 		getContentPane().add(btnCart);
 		
-	
-		
-//		
-//		JButton btnDeleteCart = new JButton("Sterge din cos");
-//		btnDeleteCart.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//			}
-//		});
-//		btnDeleteCart.setBounds(451, 92, 118, 23);
-//		getContentPane().add(btnDeleteCart);
 		
 		JLabel lblSelecteazaProdusulPe = new JLabel("Selecteaza produsul pe care il doresti si apasa pe butonul \"Adauga in cos\".");
-		lblSelecteazaProdusulPe.setBounds(28, 23, 373, 14);
+		lblSelecteazaProdusulPe.setBounds(28, 23, 430, 14);
 		getContentPane().add(lblSelecteazaProdusulPe);
 		
 		JButton btnHistorical = new JButton("Istoric comenzi");
-		btnHistorical.setBounds(451, 239, 118, 23);
+		btnHistorical.setBounds(451, 239, 140, 23);
 		getContentPane().add(btnHistorical);
 		
 		JLabel lblSorteaza = new JLabel("Sorteaza:");
@@ -152,20 +142,17 @@ public class UserWindow extends JFrame{
 		getContentPane().add(table);
 		
 		btnAddCart = new JButton("Adauga in cos");
-		btnAddCart.setBounds(451, 58, 125, 23);
+		btnAddCart.setBounds(451, 58, 140, 23);
 		getContentPane().add(btnAddCart);
 		
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				System.out.println("!!!!!!!!!!!!!!!!!!!!");
 				int row=table.rowAtPoint(evt.getPoint());
 			    name=table.getValueAt(row, 0).toString();
-			    System.out.println(name+"nume produs selectat1");
 				btnAddCart.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						ShoppingCartLogic cart=new ShoppingCartLogic();
 						try {
-							System.out.println(name+"nume produs selectat");
 							Boolean isOk=cart.addShoppingCart(name);
 							if(isOk==false) {
 								JOptionPane.showMessageDialog(frame,
@@ -182,7 +169,7 @@ public class UserWindow extends JFrame{
 			}
 		});
 	
-		btnAfiseazaProduse.setBounds(451, 126, 135, 23);
+		btnAfiseazaProduse.setBounds(451, 126, 140, 23);
 		getContentPane().add(btnAfiseazaProduse);
 		
 		

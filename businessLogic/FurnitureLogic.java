@@ -32,4 +32,11 @@ public class FurnitureLogic {
 		manageFurniture.addFurniture(f);
 		return 1;
 	}
+	
+	public ArrayList<String[]> seeFurnitureStaff() throws SQLException{
+		ArrayList<String[]> allFurnitures=new ArrayList<String[]>();
+		ManageFurniture manageFurniture=new ManageFurniture();
+		allFurnitures=manageFurniture.showAll();
+		return allFurnitures;
+	}
 }

@@ -3,6 +3,7 @@ package presentation;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import businessLogic.StaffLogic;
 import businessLogic.UserLogic;
 
 import javax.swing.JLabel;
@@ -58,19 +59,23 @@ public class LogInStaff extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				UserLogic user=new UserLogic();
-				String username=fieldUsername.getText();
-				char[] pass= passwordField.getPassword();
-				String password=pass.toString();
-				int isOK=user.logInUser(username, password);
+				StaffLogic staff=new StaffLogic();
+				String username=fieldUsername.getText();	 
+				String password=new String(passwordField.getPassword());
+				int isOK=staff.logInStaff(username, password);
 				System.out.println(password);
-				if(isOK==1)
+				if(isOK==0)
 					JOptionPane.showMessageDialog(frame,
 							"Username-ul sau parola sunt gresite! Incearca cu mai multa atentie!");
-				
+				else
+				{
+					StaffWindow newWindow= new StaffWindow();
+					newWindow.setVisible(true);
+					frame.setVisible(false);
+				}
 			}
 		});
-		btnLogin.setBounds(118, 227, 108, 23);
+		btnLogin.setBounds(118, 227, 120, 23);
 		getContentPane().add(btnLogin);
 		
 		btnBack = new JButton("BACK");
@@ -92,7 +97,7 @@ public class LogInStaff extends JFrame {
 				frame.setVisible(false);
 			}
 		});
-		btnCreateaccount.setBounds(118, 263, 108, 23);
+		btnCreateaccount.setBounds(118, 263, 120, 23);
 		getContentPane().add(btnCreateaccount);
 		
 		frame.setContentPane(getContentPane());

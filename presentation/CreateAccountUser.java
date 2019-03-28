@@ -57,8 +57,6 @@ public class CreateAccountUser extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				UserLogic user=new UserLogic();
 				String name=fieldName.getText();
-				//char[] pass=pwdPassword.getPassword();
-				//String password=pass.toString();
 				String password = new String(pwdPassword.getPassword());
 				String address=fieldAddress.getText();
 				String phone=fieldPhone.getText();
