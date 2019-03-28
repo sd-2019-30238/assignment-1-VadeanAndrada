@@ -165,7 +165,7 @@ public class UserWindow extends JFrame{
 						try {
 							System.out.println("test");
 							Boolean isOk=cart.addShoppingCart(name);
-							DiscountFactory.getDiscount(name, cantitate).applyDiscount();;
+							DiscountFactory.getDiscount(cantitate).applyDiscount(name);;
 							
 							if(isOk==false) {
 								JOptionPane.showMessageDialog(frame,

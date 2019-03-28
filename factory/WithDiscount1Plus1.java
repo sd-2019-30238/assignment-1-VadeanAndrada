@@ -8,16 +8,12 @@ import dataAcces.ManageShoppingCart;
 
 public class WithDiscount1Plus1 implements Discount{
 
-	private String name;
-	
-	public WithDiscount1Plus1(String name) {
-		this.name=name;
-	}
-	public void applyDiscount() throws SQLException {
+
+	public void applyDiscount(String name) throws SQLException {
 		Furniture f=new Furniture();		
 		ManageFurniture manageFurniture=new ManageFurniture();
 		
-		f.setNameFurniture(getName());
+		f.setNameFurniture(name);
 		int quantity=manageFurniture.getQuantity(f);
 		System.out.println(quantity);
 		quantity-=2;
@@ -28,8 +24,5 @@ public class WithDiscount1Plus1 implements Discount{
 		
 	}
 
-	public String getName() {
-		return this.name;
-	}
-	
+
 }

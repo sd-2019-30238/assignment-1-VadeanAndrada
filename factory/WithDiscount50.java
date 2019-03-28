@@ -10,15 +10,12 @@ public class WithDiscount50 implements Discount {
 
 private String name;
 	
-	public WithDiscount50(String name) {
-		this.name=name;
-	}
-	public void applyDiscount() throws SQLException {
+	public void applyDiscount(String name) throws SQLException {
 		Furniture f=new Furniture();		
 		ManageFurniture manageFurniture=new ManageFurniture();
 		ManageShoppingCart cart =new ManageShoppingCart();
 		
-		f.setNameFurniture(getName());
+		f.setNameFurniture(name);
 
 		String priceString=manageFurniture.getPrice(f);
 		float price = Float.parseFloat(priceString);
@@ -30,12 +27,6 @@ private String name;
 		cart.updatePrice(f);
 		
 	}
-	@Override
-	public String getName() {
 
-		return name;
-	}
-	
-	
 
 }

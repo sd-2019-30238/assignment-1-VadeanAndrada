@@ -30,7 +30,7 @@ public class OrderValidationWindow extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Staff");
 
-		getContentPane().setPreferredSize(new Dimension(300,350));
+		getContentPane().setPreferredSize(new Dimension(400,450));
 		getContentPane().setLayout(null);
 		
 		table = new JTable();
@@ -81,12 +81,12 @@ public class OrderValidationWindow extends JFrame{
 				table.setModel(tableModel);	
 			}
 		});
-		btnVeziComenzi.setBounds(299, 51, 125, 23);
+		btnVeziComenzi.setBounds(350, 51, 125, 23);
 		getContentPane().add(btnVeziComenzi);
 		
 		btnValidareComanda = new JButton("Validare comanda");
 
-		btnValidareComanda.setBounds(299, 85, 125, 23);
+		btnValidareComanda.setBounds(350, 85, 125, 23);
 		getContentPane().add(btnValidareComanda);
 		
 		JButton btnBack = new JButton("BACK");
