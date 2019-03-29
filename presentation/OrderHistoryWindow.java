@@ -37,11 +37,11 @@ public class OrderHistoryWindow extends JFrame{
 	getContentPane().add(lblComenziLivrate);
 
 	table = new JTable();
-	table.setBounds(42, 171, 190, 103);
+	table.setBounds(32, 65, 190, 103);
 	getContentPane().add(table);
 
 	table_1 = new JTable();
-	table_1.setBounds(42, 326, 190, 103);
+	table_1.setBounds(32,220, 190, 103);
 	getContentPane().add(table_1);
 
 	JButton btnBack = new JButton("BACK");
@@ -61,7 +61,7 @@ public class OrderHistoryWindow extends JFrame{
 			OrderLogic order=new OrderLogic();
 			ArrayList<String[]> rows=new ArrayList<String[]>();
 			try {
-				rows=order.getDeliveredUserOrders();
+				rows=order.getNotDeliveredUserOrders();
 			} catch (SQLException e2) {
 				e2.printStackTrace();
 			}
@@ -81,7 +81,7 @@ public class OrderHistoryWindow extends JFrame{
 			table.setModel(tableModel);	
 		}
 	});
-	btnAfisare.setBounds(165, 38, 89, 23);
+	btnAfisare.setBounds(250, 38, 89, 23);
 	getContentPane().add(btnAfisare);
 
 	JButton btnAfisareLivrat = new JButton("Afisare");
@@ -110,7 +110,7 @@ public class OrderHistoryWindow extends JFrame{
 			table_1.setModel(tableModel);	
 		}
 	});
-	btnAfisareLivrat.setBounds(165, 183, 89, 23);
+	btnAfisareLivrat.setBounds(250, 183, 89, 23);
 	getContentPane().add(btnAfisareLivrat);
 
 	JButton btnFeedBack = new JButton("FEEDBACK");

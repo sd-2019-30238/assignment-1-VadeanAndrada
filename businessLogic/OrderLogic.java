@@ -48,7 +48,7 @@ public class OrderLogic {
 		ManageOrder order=new ManageOrder();
 		ManageUser onlineUser= new ManageUser();
 		User user=onlineUser.getIsOnlineUserName();
-		list=order.getDeliveredUserOrders(user);
+		list=order.getNotDeliveredUserOrders(user);
 		return list;
 		
 	}

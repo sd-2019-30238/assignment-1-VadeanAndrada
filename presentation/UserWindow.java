@@ -16,8 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.FurnitureLogic;
 import businessLogic.ShoppingCartLogic;
 import businessLogic.UserLogic;
-import factory.Discount;
-import factory.DiscountFactory;
+
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -163,9 +162,9 @@ public class UserWindow extends JFrame{
 					public void actionPerformed(ActionEvent e) {
 						ShoppingCartLogic cart=new ShoppingCartLogic();
 						try {
-							System.out.println("test");
+		
 							Boolean isOk=cart.addShoppingCart(name);
-							DiscountFactory.getDiscount(cantitate).applyDiscount(name);;
+							businessLogic.factory.DiscountFactory.getDiscount(cantitate).applyDiscount(name);
 							
 							if(isOk==false) {
 								JOptionPane.showMessageDialog(frame,

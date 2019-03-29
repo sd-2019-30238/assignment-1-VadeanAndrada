@@ -118,6 +118,18 @@ public class ManageShoppingCart {
 			System.out.println("no database "+e);
 		}
 	}
-
+	public void updateQuantity(Furniture f)throws SQLException{
+		Connection con=ConnectionDB.getConnection();
+		PreparedStatement st=null;
+		int res=0;
+		try { 
+			String query="Update shoppingcart set quantity=2 where nameProduct='"+f.getNameFurniture()+"'";
+			st=con.prepareStatement(query);
+			st.executeUpdate();
+			res=st.executeUpdate();	
+		}catch (Exception e) {
+			System.out.println("no database "+e);
+		}
+	}
 
 }

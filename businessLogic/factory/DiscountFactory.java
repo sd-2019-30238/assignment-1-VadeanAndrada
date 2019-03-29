@@ -1,4 +1,4 @@
-package factory;
+package businessLogic.factory;
 
 public class DiscountFactory {
 

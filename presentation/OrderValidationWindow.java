@@ -30,7 +30,7 @@ public class OrderValidationWindow extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Staff");
 
-		getContentPane().setPreferredSize(new Dimension(400,450));
+		getContentPane().setPreferredSize(new Dimension(500,450));
 		getContentPane().setLayout(null);
 		
 		table = new JTable();

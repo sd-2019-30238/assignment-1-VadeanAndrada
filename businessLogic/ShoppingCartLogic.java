@@ -88,6 +88,15 @@ public class ShoppingCartLogic {
 			
 	}
 	
+	public void updateQuantity(String name) throws SQLException {
+		Furniture f=new Furniture();
+		f.setNameFurniture(name);
+		ManageFurniture manageFurniture=new ManageFurniture();
+		manageFurniture.updateQuantity(f);
+		
+	}
+
+	
 	
 
 
