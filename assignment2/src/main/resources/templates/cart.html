@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Lista produselor din cosul dumneavoastra: </h2>
+	<table border="1">
+		<tr>
+			<th>Id produs</th>
+			<th>Nume</th>
+			<th>Pret </th>
+			<th>Tip</th>
+
+		</tr>
+		<tr th:each="furniture : ${session.cart}">
+			<td th:text="${furniture.id}"></td>
+			<td th:text="${furniture.nameFurniture}"></td>
+			<td th:text="${furniture.price}"></td>
+			<td th:text="${furniture.type}"></td>
+
+
+		</tr>
+	</table>
+</body>
+</html>
