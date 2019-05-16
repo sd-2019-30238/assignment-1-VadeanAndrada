@@ -44,16 +44,12 @@ public class LoginController {
 	@Autowired
 	private StaffService staffService;
 	
+	
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String homeUser(ModelMap modelMap) {
 		modelMap.put("products", furnitureService.findAll());
 		return "homeUser";
-	}
-	
-	@RequestMapping(value ="/staff",method = RequestMethod.POST)
-	public String homeStaff(ModelMap modelMap) {
-		modelMap.put("products", furnitureService.findAll());
-		return "homeStaff";
 	}
 	
 	 @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -77,8 +73,6 @@ public class LoginController {
 			@ModelAttribute("staff") Staff staff) {
 		String username=staff.getNameStaff();
 		String password=staff.getPassword();
-		if(staffService.find(username).get().getNameStaff()==null)
-			System.out.println("plm");
 		Staff staff1=staffService.login(username, password);
 		if(staff1==null) {
 			modelMap.put("error", "Invalid account");
@@ -87,7 +81,19 @@ public class LoginController {
 		
 		return "homeStaff";
 	}
+	
+	@RequestMapping(value ="/staff",method = RequestMethod.POST)
+	public String homeStaff() {
+		return "homeStaff";
+	}
 		
+	
+	@RequestMapping(value ="/staffPage",method = RequestMethod.POST)
+	public String homeStaffPage(ModelMap modelMap) {
+		modelMap.put("products", furnitureService.findAll());
+		return "homeStaff";
+	}
+	
 	
 	 @RequestMapping(value = "/postLogin", method = RequestMethod.POST)
 	    public String postLogin(Model model, HttpSession session,ModelMap modelMap) {
