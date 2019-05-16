@@ -1,4 +1,4 @@
-package net.codeJava.BestDealsWeb.contoller;
+package net.codeJava.BestDealsWeb.controller;
 
 public class OrderController {
 

@@ -1,4 +1,4 @@
-package net.codeJava.BestDealsWeb.contoller;
+package net.codeJava.BestDealsWeb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

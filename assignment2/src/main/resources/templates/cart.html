@@ -12,6 +12,7 @@
 			<th>Nume</th>
 			<th>Pret </th>
 			<th>Tip</th>
+			<th>Optiune</th>
 
 		</tr>
 		<tr th:each="furniture : ${session.cart}">
@@ -19,9 +20,17 @@
 			<td th:text="${furniture.nameFurniture}"></td>
 			<td th:text="${furniture.price}"></td>
 			<td th:text="${furniture.type}"></td>
-
-
+			<td>
+			 <a th:href="${'/cart/remove/' + furniture.id}">Sterge</a>	
+			</td>
+		</tr>
+		<tr>
+		<td colspan="4">Total</td>
+		<td th:text="${total}"></td>
 		</tr>
 	</table>
+	<br>
+	<a th:href="${'/product'}">Continua cumparaturile</a>|
+	<a th:href="${'/cart/checkOut'}">Finalizare comanda</a>	
 </body>
 </html>
