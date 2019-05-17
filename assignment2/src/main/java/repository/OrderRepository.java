@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import net.codeJava.BestDealsWeb.model.Order;
 
-//@Repository
+@Repository
 public interface OrderRepository extends CrudRepository<Order, Integer> {
 
 }

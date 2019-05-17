@@ -20,6 +20,7 @@ import net.codeJava.BestDealsWeb.model.PdfUserDetails;
 import net.codeJava.BestDealsWeb.model.Staff;
 import net.codeJava.BestDealsWeb.model.User;
 import net.codeJava.BestDealsWeb.service.FurnitureService;
+import net.codeJava.BestDealsWeb.service.OrderService;
 import net.codeJava.BestDealsWeb.service.StaffService;
 import net.codeJava.BestDealsWeb.service.UserService;
 
@@ -44,7 +45,7 @@ public class LoginController {
 	@Autowired
 	private StaffService staffService;
 	
-	
+
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String homeUser(ModelMap modelMap) {
@@ -57,16 +58,15 @@ public class LoginController {
 	        return "login";
 	    }
 	
-	@GetMapping("/loginStaff")
-		public String loginStaff() {
-			return "loginStaff";
-		}
 	
-	@GetMapping("/loginStaf")
-	public String loginStaff2(Model model) {
+	@GetMapping("/loginStaff")
+	public String loginStaff2(ModelMap modelMap) {
+		System.out.println("aici1");
 		return "loginStaff";
 	}
-	@PostMapping("/loginStaf")
+	
+	
+	@PostMapping("/loginStaff")
 	public String postLoginStaff(
 			HttpServletRequest request,
 			ModelMap modelMap,
@@ -75,23 +75,10 @@ public class LoginController {
 		String password=staff.getPassword();
 		Staff staff1=staffService.login(username, password);
 		if(staff1==null) {
-			modelMap.put("error", "Invalid account");
+			modelMap.put("error", "Invalid account");	
 			return "loginStaff";
 		}
-		
-		return "homeStaff";
-	}
-	
-	@RequestMapping(value ="/staff",method = RequestMethod.POST)
-	public String homeStaff() {
-		return "homeStaff";
-	}
-		
-	
-	@RequestMapping(value ="/staffPage",method = RequestMethod.POST)
-	public String homeStaffPage(ModelMap modelMap) {
-		modelMap.put("products", furnitureService.findAll());
-		return "homeStaff";
+		return "redirect:homeStaff";
 	}
 	
 	
@@ -111,6 +98,18 @@ public class LoginController {
 	@GetMapping("/createAccount")
 	public String createAccount() {
 		return "createAccountUser";
+	}
+	
+	@GetMapping("/homeStaff")
+	public String homeStaff(ModelMap modelMap) {
+		modelMap.put("products", furnitureService.findAll());   
+		return "homeStaff";
+	}
+	
+	@PostMapping("/homeStaff")
+	public String homeStaff2(ModelMap modelMap) {
+		return "homeStaff";
+		
 	}
 	
 	@GetMapping("/createAccountUser")
@@ -133,6 +132,7 @@ public class LoginController {
 		userService.save(user);
 		return "homeUser";
 	}
+
 	
 	private void validatePrinciple(Object principal) {
         if (!(principal instanceof PdfUserDetails)) {

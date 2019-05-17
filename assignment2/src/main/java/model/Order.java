@@ -30,7 +30,7 @@ public class Order {
 		
 	}
 
-	public int getIdOrder() {
+	public int getId() {
 		return id;
 	}
 

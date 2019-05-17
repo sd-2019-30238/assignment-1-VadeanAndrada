@@ -1,5 +1,7 @@
 package net.codeJava.BestDealsWeb.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +23,20 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.save(order);
 	}
 
+	@Override
+	public Iterable<Order> findAll() {
+		return orderRepository.findAll();
+	}
+
+	@Override
+	public Optional<Order> find(int id) {
+		return orderRepository.findById(id);
+	}
+
+	@Override
+	public Order update(Order order) {
+		
+		return orderRepository.save(order);
+	}
+	
 }

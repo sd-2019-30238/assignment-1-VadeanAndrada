@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import net.codeJava.BestDealsWeb.model.Furniture;
 
-//@Repository
+@Repository
 public interface FurnitureRepository extends CrudRepository<Furniture, Integer>{
 
 }
