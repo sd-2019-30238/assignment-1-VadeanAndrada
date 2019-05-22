@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.mail.javamail.JavaMailSender;
+
 @Entity
 @Table(name="orderr")
-public class Order {
+public class Order implements Observable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -60,5 +62,12 @@ public class Order {
 
 	public void setDelivered(int delivered) {
 		this.delivered = delivered;
+	}
+
+	
+	@Override
+	public void notifyObserver(User user,JavaMailSender javaMailSender) {
+		user.update(user.getEmail(), javaMailSender);
+		
 	}
 }

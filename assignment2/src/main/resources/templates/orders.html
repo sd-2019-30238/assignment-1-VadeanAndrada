@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Lista comenzilor care trebuie aprobate</h2>
+
+	<table border="1">
+		<tr>
+			<th>Id comanda</th>
+			<th>Nume client</th>
+			<th>Pret total</th>
+			<th>Stare comanda</th>
+			<th>Optiune</th>
+		</tr>
+		<tr th:each="order : ${orders}">
+			<td th:text="${order.id}"></td>
+			<td th:text="${order.username}"></td>
+			<td th:text="${order.totalPrice}"></td>
+			<td th:text="${order.delivered}"></td>
+			<td>
+			
+			  <form th:action="@{/orders/edit/{id} (id = ${order.id})}" th:method="put">
+                <button type="submit" id="approve">Valideaza</button>
+            </form>
+		</tr>
+	</table>
+
+</body>
+</html>

@@ -2,8 +2,7 @@ package net.codeJava.BestDealsWeb.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,10 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import net.codeJava.BestDealsWeb.service.UserService;
-
-
-//@Configuration
-//@EnableWebSecurity
 
 
 @EnableWebSecurity
@@ -31,48 +26,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/loginShow","/createAccount").permitAll()
 		.antMatchers("/loginShow","/loginShowUser").permitAll()
 		.antMatchers("/loginShow","/loginStaff").permitAll()
-		  .antMatchers(
-                  "/createAccountUser",
-                  "/js/**",
-                  "/css/**",
-                  "/img/**",
-                  "/webjars/**").permitAll()
-		  .antMatchers(
-                  "/loginStaf",
-                  "/js/**",
-                  "/css/**",
-                  "/img/**",
-                  "/webjars/**").permitAll()
-		  .antMatchers(
-                  "/orders",
-                  "/js/**",
-                  "/css/**",
-                  "/img/**",
-                  "/webjars/**").permitAll()
-		  .antMatchers(
-                  "/showOrders",
-                  "/js/**",
-                  "/css/**",
-                  "/img/**",
-                  "/webjars/**").permitAll()
-		  .antMatchers(
-                  "/product",
-                  "/js/**",
-                  "/css/**",
-                  "/img/**",
-                  "/webjars/**").permitAll()
-		  .antMatchers(
-                  "/homeStaff",
-                  "/js/**",
-                  "/css/**",
-                  "/img/**",
-                  "/webjars/**").permitAll()
-		  .antMatchers(
-                  "/cart",
-                  "/js/**",
-                  "/css/**",
-                  "/img/**",
-                  "/webjars/**").permitAll()
+		.antMatchers("/createAccountUser").permitAll()
+		.antMatchers("/sendEmail").permitAll()
+		.antMatchers("/loginStaf").permitAll()
+		.antMatchers( "/orders").permitAll()
+		.antMatchers("/showOrders").permitAll()
+		.antMatchers( "/product").permitAll()
+		.antMatchers("/homeStaff").permitAll()
+		.antMatchers(HttpMethod.PUT,
+                  "/orders/edit/id").permitAll()
+		.antMatchers(HttpMethod.PUT,
+                  "/orders").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
@@ -105,5 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			}
 		};
 	}
+	
+	
 
 }

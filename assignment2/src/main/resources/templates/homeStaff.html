@@ -6,7 +6,9 @@
 </head>
 <body>
 	<h2>Lista produselor</h2>
-	<form th:action="@{/staff}"  method="post">
+	<div class="row">
+	<div >
+	<form th:action="@{/homeStaff}"  method="post">
 	<table border="1">
 		<tr>
 			<th>Id produs</th>
@@ -28,6 +30,11 @@
 			</td>
 		</tr>
 	</table>
+			<a th:href="@{/orders}">Comenzi de validat</a>	
 	</form>
+
+	</div>
+
+	</div>
 </body>
 </html>

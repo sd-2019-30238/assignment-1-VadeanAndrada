@@ -9,10 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+
+
 
 @Entity
 @Table(name="user")
-public class User {
+public class User implements Observer {
+	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_user")
@@ -34,6 +41,7 @@ public class User {
 	@Column
 	@NotEmpty(message="Please provide an address")
 	private String address;
+	
 	
 	public String getPassword() {
 		return password;
@@ -96,6 +104,21 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	} 
+
+	@Override
+	public void update(String email, JavaMailSender javaMailSender)throws MailException {
+	
+		System.out.println("am ajuns aici");
+		SimpleMailMessage mail= new SimpleMailMessage();
+		
+		mail.setTo(email);
+		mail.setFrom("avadean489@gmail.com");
+		mail.setSubject("Status Comanda");
+		mail.setText("Comanada ta tocmai a fost aprobata si va fi livrata in scurt timp."
+				+ " Revenim cum mai mullte detalii.");
+		javaMailSender.send(mail);
+		
 	}
 
 }

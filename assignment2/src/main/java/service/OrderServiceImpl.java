@@ -34,9 +34,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order update(Order order) {
-		
-		return orderRepository.save(order);
+	public void update( int id) {
+	    
+		Order order= find(id).get();
+		order.setDelivered(1);
+	    orderRepository.save(order);
+	    
 	}
+
+
 	
 }

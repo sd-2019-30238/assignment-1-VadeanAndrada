@@ -11,7 +11,6 @@ import net.codeJava.BestDealsWeb.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
-
 	
 	@Autowired
     private UserRepository userRepository;

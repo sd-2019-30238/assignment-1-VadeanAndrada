@@ -51,7 +51,6 @@ public class CartController {
 
 		Order order=new Order();
 		User user = userRepository.findUserByNameUser(session.getAttribute("userr").toString()).get();
-		System.out.println(user.getNameUser());
 		order.setUsername(user.getNameUser());
 		order.setDelivered(0);
 		order.setTotalPrice(total(session)+"");

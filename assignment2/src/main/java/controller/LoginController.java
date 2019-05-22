@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import net.codeJava.BestDealsWeb.model.PdfUserDetails;
 import net.codeJava.BestDealsWeb.model.Staff;
 import net.codeJava.BestDealsWeb.model.User;
 import net.codeJava.BestDealsWeb.service.FurnitureService;
-import net.codeJava.BestDealsWeb.service.OrderService;
 import net.codeJava.BestDealsWeb.service.StaffService;
 import net.codeJava.BestDealsWeb.service.UserService;
 
@@ -61,7 +59,6 @@ public class LoginController {
 	
 	@GetMapping("/loginStaff")
 	public String loginStaff2(ModelMap modelMap) {
-		System.out.println("aici1");
 		return "loginStaff";
 	}
 	
@@ -119,15 +116,6 @@ public class LoginController {
 
 	@PostMapping("/createAccountUser")
 	public String registerUserAccount(@ModelAttribute("user") @Valid User user){
-
-		//	        User existing = userService.findByEmail(userDto.getEmail());
-		//	        if (existing != null){
-		//	            result.rejectValue("email", null, "There is already an account registered with that email");
-		//	        }
-		//
-		//	        if (result.hasErrors()){
-		//	            return "registration";
-		//	        }
 
 		userService.save(user);
 		return "homeUser";

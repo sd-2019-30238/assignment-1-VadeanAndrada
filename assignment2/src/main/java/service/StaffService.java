@@ -2,8 +2,6 @@ package net.codeJava.BestDealsWeb.service;
 
 import java.util.Optional;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import net.codeJava.BestDealsWeb.model.Staff;
 
 
