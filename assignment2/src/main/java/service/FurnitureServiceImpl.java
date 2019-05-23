@@ -28,4 +28,15 @@ public class FurnitureServiceImpl implements FurnitureService {
 		return furnitureRepository.findById(id);
 	}
 
+	@Override
+	public void delete(int id) {
+		furnitureRepository.deleteById(id);		
+	}
+
+	@Override
+	public void add(Furniture f) {
+		furnitureRepository.save(f);
+		
+	}
+
 }

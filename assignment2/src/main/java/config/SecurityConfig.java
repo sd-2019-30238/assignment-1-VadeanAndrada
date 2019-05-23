@@ -35,6 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/homeStaff").permitAll()
 		.antMatchers(HttpMethod.PUT,
                   "/orders/edit/id").permitAll()
+		.antMatchers(HttpMethod.POST,
+                "/loginStaff/homeStaff/product/addFurniture").permitAll()
+		.antMatchers(HttpMethod.DELETE,
+                "/loginStaff/homeStaff/product/delete/id").permitAll()
 		.antMatchers(HttpMethod.PUT,
                   "/orders").permitAll()
 		.anyRequest()

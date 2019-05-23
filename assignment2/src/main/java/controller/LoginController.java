@@ -1,7 +1,6 @@
 package net.codeJava.BestDealsWeb.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import net.codeJava.BestDealsWeb.model.PdfUserDetails;
-import net.codeJava.BestDealsWeb.model.Staff;
 import net.codeJava.BestDealsWeb.model.User;
 import net.codeJava.BestDealsWeb.service.FurnitureService;
-import net.codeJava.BestDealsWeb.service.StaffService;
 import net.codeJava.BestDealsWeb.service.UserService;
 
 
@@ -30,20 +27,12 @@ public class LoginController {
 	public User user() {
 		return new User();
 	}
-	@ModelAttribute("staff")
-	public Staff staff() {
-		return new Staff();
-	}
+
 	@Autowired
 	private UserService userService;
 	
 	@Autowired
 	private FurnitureService furnitureService;
-	
-	@Autowired
-	private StaffService staffService;
-	
-
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String homeUser(ModelMap modelMap) {
@@ -55,28 +44,6 @@ public class LoginController {
 	    public String login() {
 	        return "login";
 	    }
-	
-	
-	@GetMapping("/loginStaff")
-	public String loginStaff2(ModelMap modelMap) {
-		return "loginStaff";
-	}
-	
-	
-	@PostMapping("/loginStaff")
-	public String postLoginStaff(
-			HttpServletRequest request,
-			ModelMap modelMap,
-			@ModelAttribute("staff") Staff staff) {
-		String username=staff.getNameStaff();
-		String password=staff.getPassword();
-		Staff staff1=staffService.login(username, password);
-		if(staff1==null) {
-			modelMap.put("error", "Invalid account");	
-			return "loginStaff";
-		}
-		return "redirect:homeStaff";
-	}
 	
 	
 	 @RequestMapping(value = "/postLogin", method = RequestMethod.POST)
@@ -97,17 +64,6 @@ public class LoginController {
 		return "createAccountUser";
 	}
 	
-	@GetMapping("/homeStaff")
-	public String homeStaff(ModelMap modelMap) {
-		modelMap.put("products", furnitureService.findAll());   
-		return "homeStaff";
-	}
-	
-	@PostMapping("/homeStaff")
-	public String homeStaff2(ModelMap modelMap) {
-		return "homeStaff";
-		
-	}
 	
 	@GetMapping("/createAccountUser")
 	public String showRegistrationForm(Model model) {
@@ -118,7 +74,7 @@ public class LoginController {
 	public String registerUserAccount(@ModelAttribute("user") @Valid User user){
 
 		userService.save(user);
-		return "homeUser";
+		return "login";
 	}
 
 	
