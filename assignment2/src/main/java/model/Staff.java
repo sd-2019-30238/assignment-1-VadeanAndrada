@@ -21,7 +21,7 @@ public class Staff {
 	@NotEmpty(message="Please provide a password")
 	private String password;
 	
-	public Staff(String nameStaff, String role, String password) {
+	public Staff(String nameStaff, String password) {
 		this.nameStaff=nameStaff;
 		this.password=password;
 	}

@@ -8,7 +8,6 @@
 	<h2>Lista produselor</h2>
 	<div class="row">
 	<div >
-	<form th:action="@{/homeStaff}"  method="post">
 	<table border="1">
 		<tr>
 			<th>Id produs</th>
@@ -19,20 +18,20 @@
 			<th>Optiune</th>
 		</tr>
 		<tr th:each="product : ${products}">
-			<td th:text="${product.id}"></td>
+ 			<td th:text="${product.id}"></td>
 			<td th:text="${product.nameFurniture}"></td>
 			<td th:text="${product.price}"></td>
 			<td th:text="${product.discount}"></td>
 			<td th:text="${product.type}"></td>
 			<td>
-			 <a th:href="${'/cart/buy/' + product.id}">Cumpara</a>	
-
+				<form th:action="@{/product/delete/{id} (id = ${product.id})}" th:method="DELETE">  
+              	  <button type="submit" id="approve">Sterge</button>
+				</form>
 			</td>
 		</tr>
 	</table>
 			<a th:href="@{/orders}">Comenzi de validat</a>	
-	</form>
-
+			<a th:href="@{/product/addFurniture}">Adauga un produs nou</a>
 	</div>
 
 	</div>

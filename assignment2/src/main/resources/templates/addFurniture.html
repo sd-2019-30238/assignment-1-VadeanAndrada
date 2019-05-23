@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Best Deal: LogIn </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+	<h1>Adauga un produs nou</h1>
+	<div class="container">
+	<form action="#" th:action="@{/product/addFurniture}" th:object="${product}" method="POST"  >
+		
+                    <p><label for="nameFurniture" class="control-label">Nume produs</label>
+                    <input id="nameFurniture"
+                           class="form-control"
+                           th:field="*{nameFurniture}"/></p>           
+
+                    <p><label for="type" class="control-label">Tip</label>
+                    <input id="type"
+                           class="form-control"
+                           th:field="*{type}"/></p>
+        
+                    <p><label for="discount" class="control-label">Discount</label>
+                    <input id="discount"
+                           class="form-control"
+                           th:field="*{discount}"/></p>
+
+                    <p><label for="price" class="control-label">Pret</label>
+                    <input id="price"
+                           class="form-control"
+                           th:field="*{price}"/></p>
+                   
+                    <p><label for="quantity" class="control-label">Cantitate</label>
+                    <input id="quantity"
+                           class="form-control"
+                           th:field="*{quantity}"/></p>
+
+      
+        <div align="center" th:if="${param.error}">
+				<p style="font-size: 20; color: #FF1C19;">Exista deja un cont cu numele acesta. Alege un alt nume!</p>
+		</div>
+        <p><button class="btn btn-lg btn-primary btn-block" type="submit" value="Create Account" th:text="AdaugaProdus"></button> </p>
+    </form>
+    </div>
+</body>
+</html>

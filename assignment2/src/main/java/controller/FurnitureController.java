@@ -39,13 +39,13 @@ public class FurnitureController {
 	public String deleteFurniture(@PathVariable("id") int id) {
 		
 		furnitureService.delete(id);
-		return "redirect:../../homeUser";
+		return "redirect:../../homeStaff";
 	}
 	
 	@PostMapping(value="/addFurniture")
 	public String addFurniture(@ModelAttribute("product") @Valid Furniture f ) {
 		furnitureService.add(f);
-		return "homeStaff";
+		return "redirect:/homeStaff";
 	}
 	
 	@GetMapping(value="/addFurniture")
