@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Lista produselor</h2>
+	<div class="row">
+	<div >
+	<table border="1">
+		<tr>
+			<th>Id produs</th>
+			<th>Nume</th>
+			<th>Pret </th>
+			<th>Oferta</th>
+			<th>Tip</th>
+			<th>Optiune</th>
+		</tr>
+		<tr th:each="product : ${products}">
+ 			<td th:text="${product.id}"></td>
+			<td th:text="${product.nameFurniture}"></td>
+			<td th:text="${product.price}"></td>
+			<td th:text="${product.discount}"></td>
+			<td th:text="${product.type}"></td>
+			<td>
+				<form th:action="@{/product/delete/{id} (id = ${product.id})}" th:method="DELETE">  
+              	  <button type="submit" id="approve">Sterge</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+			<a th:href="@{/orders}">Comenzi de validat</a>	
+			<a th:href="@{/product/addFurniture}">Adauga un produs nou</a>
+	</div>
+
+	</div>
+</body>
+</html>
