@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.codeJava.BestDealsWeb.service.FurnitureQueryService;
-import net.codeJava.BestDealsWeb.service.FurnitureService;
+
 
 @Controller
 @RequestMapping("/product")

@@ -12,17 +12,28 @@ public class UserCommandServiceImpl implements UserCommandService {
 	
 	@Autowired
     private UserRepository userRepository;
+	
+
+	 public UserCommandServiceImpl() {}
 
 	@Override
-	public User save(User registration){
+	public void save(User registration){
         User user = new User();
         user.setNameUser(registration.getNameUser());
         user.setEmail(registration.getEmail());
         user.setPassword(registration.getPassword());
         user.setAddress(registration.getAddress());
         user.setPhoneUser(registration.getPhoneUser());
-        return userRepository.save(user);
+        userRepository.save(user);
     }
+
+	public UserRepository getUserRepository() {
+		return userRepository;
+	}
+
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 	
 	
 }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import net.codeJava.BestDealsWeb.model.PdfUserDetails;
 import net.codeJava.BestDealsWeb.model.User;
 import net.codeJava.BestDealsWeb.service.FurnitureQueryService;
-import net.codeJava.BestDealsWeb.service.FurnitureService;
+
 
 @Controller
 public class LoginQueryController {

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.codeJava.BestDealsWeb.service.OrderQueryService;
-import net.codeJava.BestDealsWeb.service.OrderService;
 
 @Controller
 @Transactional

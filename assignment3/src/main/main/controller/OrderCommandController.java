@@ -14,16 +14,18 @@ import net.codeJava.BestDealsWeb.model.Order;
 import net.codeJava.BestDealsWeb.model.User;
 import net.codeJava.BestDealsWeb.repository.UserRepository;
 import net.codeJava.BestDealsWeb.service.OrderCommandService;
-import net.codeJava.BestDealsWeb.service.OrderService;
+import net.codeJava.BestDealsWeb.service.OrderQueryService;
 import net.codeJava.BestDealsWeb.service.UserQueryService;
-import net.codeJava.BestDealsWeb.service.UserService;
 
 @Controller
 @Transactional
 @RequestMapping("/orders")
 public class OrderCommandController {
 	@Autowired
-	OrderService orderService;
+	OrderQueryService orderService;
+	
+	@Autowired
+	OrderCommandService orderCommandService;
 	
 	@Autowired
 	UserQueryService userService;
@@ -43,15 +45,12 @@ public class OrderCommandController {
 		
 		return new Order();
 	}
-
-
-	
 	
 	@RequestMapping(method = RequestMethod.PUT,value="/edit/{id}")
 	public String updateOrder(
 			@PathVariable("id")Integer id) {
 		
-		orderService.update(id);	
+		orderCommandService.update(id);	
 		Order order=orderService.find(id).get();
 		
 		try {

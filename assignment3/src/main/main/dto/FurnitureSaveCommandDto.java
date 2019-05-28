@@ -3,7 +3,7 @@ package net.codeJava.BestDealsWeb.dto;
 public class FurnitureSaveCommandDto {
 
 	private int id;
-	private String nameProduct;
+	private String nameFurniture;
 	private String price;
 	private int quantity;
 	private String discount;
@@ -14,11 +14,12 @@ public class FurnitureSaveCommandDto {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNameProduct() {
-		return nameProduct;
+
+	public String getNameFurniture() {
+		return nameFurniture;
 	}
-	public void setNameProduct(String nameProduct) {
-		this.nameProduct = nameProduct;
+	public void setNameFurniture(String nameFurniture) {
+		this.nameFurniture = nameFurniture;
 	}
 	public String getPrice() {
 		return price;
